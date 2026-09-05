@@ -78,11 +78,14 @@ export default function ProfessionalProfile() {
             Iago Caldeira<span>Senior Site Reliability Engineer (SRE)</span>
           </h1>
           <p className="profile-specialisms">
-            Platform Engineering · Cloud Infrastructure · Production AI
+            Infrastructure · Platform Engineering · Observability · Production
+            AI
           </p>
           <p className="profile-lead">
-            I’m Iago Neves Caldeira, a Senior SRE, Platform Engineer and AI
-            Engineer based in Belo Horizonte, Brazil, in Latin America (LATAM).
+            I’m Iago Neves Caldeira, a Senior Site Reliability Engineer (SRE)
+            based in Belo Horizonte, Brazil, in Latin America (LATAM). My work
+            spans infrastructure engineering, developer platforms, observability
+            and production AI.
           </p>
           <p className="profile-body">
             I build infrastructure on Amazon Web Services (AWS) and Google Cloud
@@ -461,18 +464,17 @@ export default function ProfessionalProfile() {
         <div className="recruiter-intro">
           <p className="profile-eyebrow">FOR RECRUITERS & ENGINEERING TEAMS</p>
           <h2 id="opportunities-title">
-            Based in LATAM.
-            <br />
-            Focused on production.
+            Hiring for infrastructure, SRE or platform engineering?
           </h2>
           <p>
-            Looking for an engineer in Latin America who can work across
-            reliability, cloud platforms and AI infrastructure? My experience
-            connects those areas, from Kubernetes operations to observability
-            standards and production agent workflows.
+            My experience fits Infrastructure Engineer, Site Reliability
+            Engineer, DevOps Engineer, Platform Engineer and Observability
+            Engineer roles. Explore the responsibilities, technologies and
+            results behind each area, including AWS/GCP infrastructure and
+            production AI platforms.
           </p>
-          <a className="profile-text-link" href="#expertise">
-            Match the role to my work{' '}
+          <a className="profile-text-link" href="/infrastructure-engineer">
+            Read the brief for hiring teams{' '}
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>
@@ -533,6 +535,7 @@ export default function ProfessionalProfile() {
       <footer className="profile-footer">
         <span>IAGO NEVES CALDEIRA · BRAZIL / LATAM · UTC−3</span>
         <a href="/resume">Full résumé</a>
+        <a href="/infrastructure-engineer">For hiring teams</a>
         <a href="/consulting">Consulting</a>
         <a href={githubUrl} target="_blank" rel="me noopener">
           GitHub ↗

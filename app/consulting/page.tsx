@@ -244,6 +244,9 @@ export default function ConsultingPage() {
       </section>
       <footer className="document-footer">
         <span>Iago Neves Caldeira · Brazil / LATAM</span>
+        <a href="/infrastructure-engineer">
+          Hiring for your team? Read the engineering brief ↗
+        </a>
         <a href="/#selected-work">Explore all engineering cases ↗</a>
       </footer>
     </main>

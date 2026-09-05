@@ -322,7 +322,7 @@ export default function ConsolePortfolio() {
           >
             Play my work <span aria-hidden="true">↗</span>
           </button>
-          <a href="#profile">Profile</a>
+          <a href="/infrastructure-engineer">For hiring teams</a>
           <a href="#selected-work">Work</a>
           <a href="/consulting">Consulting</a>
           <a className="header-resume" href="/resume">
@@ -348,14 +348,16 @@ export default function ConsolePortfolio() {
       </header>
       <section className="main-stage" aria-label="Playable portfolio">
         <aside className="intro-note">
-          <p className="intro-profession">SENIOR SITE RELIABILITY ENGINEER</p>
+          <p className="intro-profession">
+            SENIOR SRE / INFRASTRUCTURE ENGINEER
+          </p>
           <h2>
             Serious systems.
             <br />
             Playful thinking.
           </h2>
           <p>
-            SRE, platform & AI engineering.
+            Cloud infrastructure, platform engineering, observability & AI.
             <br />
             Brazil · LATAM · UTC−3.
           </p>

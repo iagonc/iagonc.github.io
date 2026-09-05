@@ -38,8 +38,7 @@ test('search metadata and structured identity use the real LinkedIn profile', ()
   for (const term of [
     'Iago Caldeira',
     'Senior SRE',
-    'Platform',
-    'AI Engineer',
+    'Infrastructure Engineer',
     'LATAM',
   ])
     assert.ok(title.includes(term), `Missing positioning in title: ${term}`);
@@ -47,7 +46,15 @@ test('search metadata and structured identity use the real LinkedIn profile', ()
     /<meta name="description" content="([^"]+)"/,
   )?.[1];
   assert.ok(description);
-  for (const term of ['LATAM', 'AWS', 'GCP', 'AI infrastructure'])
+  for (const term of [
+    'LATAM',
+    'AWS',
+    'GCP',
+    'DevOps',
+    'platform engineering',
+    'observability',
+    'AI infrastructure',
+  ])
     assert.ok(
       description.includes(term),
       `Missing positioning in description: ${term}`,
@@ -188,7 +195,7 @@ test('robots and sitemap advertise the canonical public homepage', async () => {
   assert.match(sitemap.headers.get('content-type'), /xml/);
   const xml = await sitemap.text();
   assert.ok(xml.includes(`<loc>${publicUrl}</loc>`));
-  assert.equal((xml.match(/<loc>/g) || []).length, 6);
+  assert.equal((xml.match(/<loc>/g) || []).length, 7);
   assert.doesNotMatch(xml, /localhost|example\.|linkedin\.com/);
 });
 
@@ -422,6 +429,78 @@ test('case studies have crawlable content, independent metadata and sitemap entr
 
 test('the decorative battery does not expose an invalid accessible name', () => {
   assert.match(visibleHtml, /class="lcd-battery" aria-hidden="true"/);
+});
+
+test('the hiring brief maps engineering roles to real crawlable career evidence', async () => {
+  const path = '/infrastructure-engineer';
+  assert.ok(visibleHtml.includes(`href="${path}"`));
+  const response = await fetch(`${origin}${path}`);
+  assert.equal(response.status, 200);
+  const content = await response.text();
+  const readable = content.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+  assert.equal((readable.match(/<h1\b/g) || []).length, 1);
+  assert.equal(
+    (readable.match(/class="consulting-service hiring-role"/g) || []).length,
+    6,
+  );
+  for (const term of [
+    'Infrastructure Engineer',
+    'Site Reliability Engineer (SRE)',
+    'Platform Engineer',
+    'DevOps Engineer',
+    'Observability Engineer',
+    'AI Infrastructure Engineer',
+    'AI Platform Engineer',
+    '50%',
+    '40%',
+    '5,000+',
+    'Belo Horizonte',
+    'English (advanced)',
+  ])
+    assert.ok(readable.includes(term), `Missing recruiter evidence: ${term}`);
+  const linkedPages = new Map();
+  for (const [, href] of readable.matchAll(/href="([^"]+)"/g)) {
+    if (href.startsWith('#')) {
+      assert.ok(
+        readable.includes(`id="${href.slice(1)}"`),
+        `Missing role anchor: ${href}`,
+      );
+    } else if (href.startsWith('/')) {
+      const [page, id] = href.split('#');
+      if (!linkedPages.has(page)) {
+        const target = await fetch(`${origin}${page}`);
+        assert.equal(target.status, 200, href);
+        linkedPages.set(page, await target.text());
+      }
+      if (id)
+        assert.ok(
+          linkedPages.get(page).includes(`id="${id}"`),
+          `Missing career evidence: ${href}`,
+        );
+    }
+  }
+  const profile = JSON.parse(
+    content.match(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+    )[1],
+  );
+  assert.equal(profile.url, `${publicUrl}infrastructure-engineer`);
+  assert.equal(profile.mainEntity['@id'], `${publicUrl}#person`);
+  assert.equal(profile.mainEntity.jobTitle, 'Senior Site Reliability Engineer');
+  assert.ok(
+    content.includes(
+      `<link rel="canonical" href="${publicUrl}infrastructure-engineer"`,
+    ),
+  );
+  assert.ok(
+    content.includes(
+      `<meta property="og:url" content="${publicUrl}infrastructure-engineer"`,
+    ),
+  );
+  assert.match(content, /<meta name="robots" content="index, follow"/);
+  assert.ok(readable.includes(`href="${linkedIn}"`));
+  const sitemap = await (await fetch(`${origin}/sitemap.xml`)).text();
+  assert.ok(sitemap.includes(`<loc>${publicUrl}infrastructure-engineer</loc>`));
 });
 
 test('Google ownership verification survives static export', () => {

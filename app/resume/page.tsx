@@ -74,6 +74,9 @@ export default function ResumePage() {
       </nav>
       <ResumeContent />
       <footer className="document-footer">
+        <a href="/infrastructure-engineer">
+          Match my experience to your role →
+        </a>
         <a href="/#selected-work">Explore the engineering case studies →</a>
         <a href={linkedInUrl} rel="me noopener" target="_blank">
           Connect on LinkedIn ↗

@@ -5,9 +5,9 @@ export const githubUrl = 'https://github.com/iagonc';
 
 export const publicSiteUrl = 'https://iagonc.github.io/';
 export const siteTitle =
-  'Iago Caldeira | Senior SRE, Platform & AI Engineer in LATAM';
+  'Iago Caldeira | Senior SRE & Infrastructure Engineer in LATAM';
 export const siteDescription =
-  'Iago Caldeira, Senior SRE and Platform Engineer in Brazil, LATAM. AWS, GCP, Kubernetes, DevOps and AI infrastructure. Explore my work and connect on LinkedIn.';
+  'Iago Caldeira, Senior SRE and Infrastructure Engineer in Brazil, LATAM. AWS, GCP, Kubernetes, DevOps, platform engineering, observability and AI infrastructure.';
 export const profileStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -22,7 +22,7 @@ export const profileStructuredData = {
     alternateName: 'Iago Caldeira',
     jobTitle: 'Senior Site Reliability Engineer',
     description:
-      'Senior SRE, Platform Engineer and AI Engineer in Belo Horizonte, Brazil, Latin America (LATAM). Experience in AWS, Google Cloud (GCP), Kubernetes, observability, DevOps and production AI agent platforms.',
+      'Senior Site Reliability Engineer in Belo Horizonte, Brazil, Latin America (LATAM). Infrastructure engineering, platform engineering, DevOps and observability experience across AWS, Google Cloud (GCP) and Kubernetes, including production AI agent platforms.',
     sameAs: [linkedInUrl, githubUrl],
     ...(publicSiteUrl ? { url: publicSiteUrl } : {}),
     homeLocation: { '@type': 'Place', name: 'Belo Horizonte, Brazil' },

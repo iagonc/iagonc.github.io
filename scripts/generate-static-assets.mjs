@@ -12,6 +12,7 @@ const pages = [
   '',
   'resume',
   'consulting',
+  'infrastructure-engineer',
   ...caseStudies.map(({ slug }) => `work/${slug}`),
 ];
 await mkdir(publicDir, { recursive: true });

@@ -1,5 +1,9 @@
 # Iago pocket
 
+I’m **Iago Neves Caldeira**, a Senior Site Reliability Engineer based in Brazil, LATAM. My work spans infrastructure engineering, DevOps, developer platforms, observability and production AI, with experience at Alloy / Kinter, iFood and PicPay.
+
+[Portfolio](https://iagonc.github.io/) · [Engineering experience for hiring teams](https://iagonc.github.io/infrastructure-engineer) · [Full résumé](https://iagonc.github.io/resume) · [Consulting](https://iagonc.github.io/consulting)
+
 A tactile, monochrome handheld portfolio for Iago Caldeira. Built with React, TypeScript and CSS on the generated Vinext starter. No game-console trademarks, external font requests, trackers, or user data storage.
 
 ## Run locally

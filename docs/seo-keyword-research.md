@@ -6,7 +6,7 @@ Reviewed 5 September 2026. Goal: help relevant visitors discover the portfolio a
 
 Lead with **Iago Caldeira — Senior Site Reliability Engineer (SRE), Platform & AI Engineer**. Use the full name, Iago Neves Caldeira, naturally in the professional introduction. Keep observability prominent because the résumé contains unusually concrete operating scale. Explain AI work as production agent engineering: approvals, replay, auditability and infrastructure, rather than a broad list of fashionable AI labels.
 
-Current title: `Iago Caldeira | Senior SRE, Platform & AI Engineer in LATAM`.
+Current homepage title: `Iago Caldeira | Senior SRE & Infrastructure Engineer in LATAM`. The `/infrastructure-engineer` hiring brief maps infrastructure, SRE, platform, DevOps, observability and AI roles to career evidence. These role-fit labels do not replace historical employment titles.
 
 Suggested short introduction: “I’m Iago Neves Caldeira, a Senior Site Reliability Engineer based in Belo Horizonte, Brazil. I build reliable AWS and Kubernetes platforms, observability systems and production AI agents with human approval workflows.” This is editorial positioning inferred from the supplied résumé, not an independent employment verification.
 

@@ -361,6 +361,28 @@
   margin-top: 16px;
   margin-right: 24px;
 }
+.candidate-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0;
+  padding: 28px;
+  border: 1px solid #acb19a;
+  background: #e0e2cd;
+}
+.candidate-facts dt {
+  font-size: 10px;
+  color: #536048;
+  margin-bottom: 12px;
+}
+.candidate-facts dd {
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0;
+}
+.hiring-page .resume-jump-links {
+  margin-top: 28px;
+}
 .resume-page {
   max-width: 1020px;
 }
@@ -428,6 +450,10 @@
   display: none;
 }
 @media (max-width: 800px) {
+  .candidate-facts {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
   .consulting-callout,
   .consulting-service,
   .consulting-process ol {
