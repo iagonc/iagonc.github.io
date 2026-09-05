@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { experience, projects, toolkit, profile } from './portfolio';
 import { linkedInUrl } from './site-config';
-import { technicalToolkit } from './technical-toolkit';
+import ResumeContent from './resume-content';
 import { ArcadeScreen, CartridgeShelf, MissionNotes } from './arcade';
 import {
   arcadeReducer,
@@ -39,7 +39,7 @@ const menu: { label: string; view: View }[] = [
 const quests = [...experience, ...projects];
 function Battery() {
   return (
-    <span className="lcd-battery" aria-label="Full battery">
+    <span className="lcd-battery" aria-hidden="true">
       <i />
       <i />
       <i />
@@ -70,51 +70,14 @@ function Resume({
             Belo Horizonte, Brazil · LATAM · UTC−3
           </DialogDescription>
         </div>
-        <p>
-          I build reliable cloud platforms, make complex systems observable, and
-          bring AI agents into production. My work connects infrastructure,
-          developer experience, and the people behind both.
-        </p>
-        <h2>Experience</h2>
-        {experience.map((job) => (
-          <section className="resume-job" key={job.title}>
-            <div>
-              <h3>{job.title}</h3>
-              <span>{job.date}</span>
-            </div>
-            <p className="resume-role">{job.role}</p>
-            <p>{job.detail}</p>
-          </section>
-        ))}
-        <h2>Toolkit</h2>
-        {technicalToolkit.map((group) => (
-          <p key={group.title}>
-            <strong>{group.title}: </strong>
-            {group.items.join(', ')}.
-          </p>
-        ))}
-        <h2>Education & languages</h2>
-        <p>
-          Information Systems, IFMG — coursework in software engineering,
-          databases, and artificial intelligence. Portuguese (native), English
-          (advanced).
-        </p>
-        <h2>Selected concepts</h2>
-        <p className="resume-note">
-          The following projects are fictional portfolio examples.
-        </p>
-        {projects.map((project) => (
-          <p key={project.title}>
-            <strong>{project.title}. </strong>
-            {project.detail}
-          </p>
-        ))}
+        <ResumeContent />
         <div className="resume-end">
           <a href={linkedInUrl} target="_blank" rel="me noopener">
             Connect on LinkedIn <ArrowUpRight size={15} />
           </a>
+          <a href="/resume">Open printable résumé</a>
           <a href="/resume.txt" download="Iago-Caldeira-Resume.txt">
-            <Download size={15} /> Download résumé
+            <Download size={15} /> Download full résumé
           </a>
         </div>
       </DialogContent>
@@ -361,6 +324,9 @@ export default function ConsolePortfolio() {
           </button>
           <a href="#profile">Profile</a>
           <a href="#selected-work">Work</a>
+          <a className="header-resume" href="/resume">
+            Résumé
+          </a>
           <a
             className="header-linkedin"
             href={linkedInUrl}

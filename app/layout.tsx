@@ -3,6 +3,7 @@ import './globals.css';
 import './arcade.css';
 import './profile.css';
 import './experience-explorer.css';
+import './documents.css';
 import {
   linkedInUrl,
   publicSiteUrl,

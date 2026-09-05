@@ -619,7 +619,7 @@
   }
 }
 @media (max-width: 620px) {
-  .site-header nav > a:not(.header-linkedin) {
+  .site-header nav > a:not(.header-linkedin):not(.header-resume) {
     display: none;
   }
   .site-header nav > .play-nav {

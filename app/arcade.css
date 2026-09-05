@@ -452,7 +452,7 @@
 }
 .notes-kicker {
   font-size: 9px;
-  color: #746e60;
+  color: #595448;
   letter-spacing: 0.03em;
 }
 .experience-stat {
@@ -485,7 +485,7 @@
 }
 .real-experience .notes-tools {
   font-size: 9px;
-  color: #777167;
+  color: #595448;
   margin-top: 6px;
 }
 .notes-career {
@@ -500,7 +500,7 @@
 .simulation-note {
   font-size: 8px;
   line-height: 1.55;
-  color: #827d73;
+  color: #595448;
   margin: 15px 0 0;
 }
 .badge-collection {
@@ -512,7 +512,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 9px;
-  color: #746e60;
+  color: #595448;
 }
 .collection-slots {
   display: flex;
@@ -555,7 +555,7 @@
   font-size: 8px;
   line-height: 1.55;
   margin-left: 3px;
-  color: #777167;
+  color: #595448;
 }
 .mission-key-hints {
   display: flex;

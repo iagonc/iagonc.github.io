@@ -64,7 +64,10 @@ test('search metadata and structured identity use the real LinkedIn profile', ()
   assert.equal(profile['@type'], 'ProfilePage');
   assert.equal(profile.mainEntity['@type'], 'Person');
   assert.equal(profile.mainEntity.name, 'Iago Neves Caldeira');
-  assert.deepEqual(profile.mainEntity.sameAs, [linkedIn]);
+  assert.deepEqual(profile.mainEntity.sameAs, [
+    linkedIn,
+    'https://github.com/iagonc',
+  ]);
   assert.equal(profile.mainEntity.jobTitle, 'Senior Site Reliability Engineer');
   assert.ok(profile.mainEntity.knowsAbout.includes('AI Platform Engineering'));
   assert.ok(
@@ -108,7 +111,7 @@ test('international recruiting content is readable in English without JavaScript
   const roles = [...visibleHtml.matchAll(/class="career-role">([^<]+)</g)].map(
     ([, role]) => role,
   );
-  assert.equal(roles.length, 6);
+  assert.equal(roles.length, 7);
   assert.ok(roles.every((role) => !role.includes('Staff')));
 });
 
@@ -154,6 +157,14 @@ test('the full toolkit is readable without JavaScript and matches schema and res
     'Vertex AI',
     'Model Context Protocol (MCP)',
     'Prompt caching',
+    'Anthropic Claude',
+    'Retrieval-augmented generation (RAG)',
+    'AWS Transit Gateway',
+    'Ansible',
+    'Docker',
+    'Apache Kafka',
+    'MLOps',
+    'AIOps',
   ]) {
     assert.ok(inventory.includes(term), `Missing visible skill: ${term}`);
     assert.ok(
@@ -177,7 +188,7 @@ test('robots and sitemap advertise the canonical public homepage', async () => {
   assert.match(sitemap.headers.get('content-type'), /xml/);
   const xml = await sitemap.text();
   assert.ok(xml.includes(`<loc>${publicUrl}</loc>`));
-  assert.equal((xml.match(/<loc>/g) || []).length, 1);
+  assert.equal((xml.match(/<loc>/g) || []).length, 5);
   assert.doesNotMatch(xml, /localhost|example\.|linkedin\.com/);
 });
 
@@ -293,4 +304,122 @@ test('company coverage has crawlable primary sources and identifies company resu
     /November 2025 record covers the whole iFood ecosystem/,
   );
   assert.match(visibleText, /2022.*Alloy history/);
+});
+
+test('the complete resume preserves career depth in readable HTML and text', async () => {
+  const page = await fetch(`${origin}/resume`);
+  assert.equal(page.status, 200);
+  const content = await page.text();
+  const readable = content
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+  const text = readable.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const download = await (await fetch(`${origin}/resume.txt`)).text();
+  for (const term of [
+    'February 2025',
+    'April 2022',
+    'January 2022',
+    'October 2021',
+    'May 2021',
+    'January 2018',
+    'August 2019',
+    'City Hall',
+    '40%',
+    '50%',
+    '30%',
+    '99.9%',
+    '10-minute',
+    '15-minute',
+    '5,000+',
+    'Anthropic API',
+    'Terraform Associate',
+    'Cambridge',
+    'Information Systems',
+  ]) {
+    assert.ok(text.includes(term), `Missing complete resume HTML: ${term}`);
+    assert.ok(download.includes(term), `Missing complete text resume: ${term}`);
+  }
+  assert.equal((readable.match(/class="resume-job"/g) || []).length, 7);
+  assert.equal((readable.match(/<h1\b/g) || []).length, 1);
+  assert.doesNotMatch(
+    text,
+    /Fictional|fictional|Signal Tower|Cloud Atlas|Agent Workshop|studies listed in supplied resume/,
+  );
+  assert.doesNotMatch(
+    download,
+    /Fictional|fictional|Signal Tower|Cloud Atlas|Agent Workshop/,
+  );
+  assert.match(readable, /Print \/ save PDF/);
+  assert.match(visibleHtml, /href="\/resume"/);
+  const canonical = content.match(/<link rel="canonical" href="([^"]+)"/);
+  assert.equal(canonical?.[1], `${publicUrl}resume`);
+  assert.ok(
+    content.includes(`<meta property="og:url" content="${publicUrl}resume"`),
+  );
+});
+
+test('case studies have crawlable content, independent metadata and sitemap entries', async () => {
+  const sitemap = await (await fetch(`${origin}/sitemap.xml`)).text();
+  const titles = new Set();
+  /** @type {Array<[string, string[]]>} */
+  const cases = [
+    [
+      'ifood-observability',
+      ['40%', '50+', '10-minute', '15-minute', 'Transit Gateway'],
+    ],
+    ['picpay-kubernetes', ['300+', '50%', 'KEDA', 'RabbitMQ', 'New Relic']],
+    [
+      'kinter-ai-infrastructure',
+      ['LangGraph', 'durable replay', 'Claude', 'MCP', 'Anthropic API'],
+    ],
+  ];
+  for (const [slug, terms] of cases) {
+    const path = `/work/${slug}`;
+    const response = await fetch(`${origin}${path}`);
+    assert.equal(response.status, 200, path);
+    const content = await response.text();
+    const readable = content.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+    assert.equal((readable.match(/<h1\b/g) || []).length, 1, path);
+    for (const term of terms)
+      assert.ok(readable.includes(term), `${path}: missing ${term}`);
+    for (const anchor of readable.matchAll(/href="#([^"]+)"/g))
+      assert.ok(
+        readable.includes(`id="${anchor[1]}"`),
+        `${path}: broken section link`,
+      );
+    assert.ok(
+      visibleHtml.includes(`href="${path}"`),
+      `${path}: missing homepage link`,
+    );
+    assert.ok(sitemap.includes(`<loc>${publicUrl}work/${slug}</loc>`), path);
+    const canonical = content.match(/<link rel="canonical" href="([^"]+)"/);
+    assert.equal(canonical?.[1], `${publicUrl}work/${slug}`, path);
+    assert.ok(
+      content.includes(
+        `<meta property="og:url" content="${publicUrl}work/${slug}"`,
+      ),
+    );
+    assert.match(content, /<meta property="og:type" content="article"/);
+    const title = content.match(/<title>(.*?)<\/title>/)?.[1];
+    assert.ok(title?.includes('Iago Caldeira'));
+    titles.add(title);
+    const article = JSON.parse(
+      content.match(
+        /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+      )[1],
+    );
+    assert.equal(article['@type'], 'Article');
+    assert.equal(article.author['@id'], `${publicUrl}#person`);
+    assert.equal(article.mainEntityOfPage, `${publicUrl}work/${slug}`);
+    assert.match(readable, /href="\/resume#/);
+  }
+  assert.equal(titles.size, 3);
+  assert.ok(sitemap.includes(`<loc>${publicUrl}resume</loc>`));
+  const missing = await fetch(`${origin}/work/missing-case-study`);
+  assert.equal(missing.status, 404);
+  await missing.arrayBuffer();
+});
+
+test('the decorative battery does not expose an invalid accessible name', () => {
+  assert.match(visibleHtml, /class="lcd-battery" aria-hidden="true"/);
 });

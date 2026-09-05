@@ -1,12 +1,13 @@
 import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import { experience } from './portfolio';
-import { linkedInUrl } from './site-config';
+import { githubUrl, linkedInUrl } from './site-config';
 import ExperienceExplorer from './experience-explorer';
 import { technicalToolkit } from './technical-toolkit';
 
 const chapters = [
   {
     id: 'platform-engineering',
+    href: '/work/picpay-kubernetes',
     number: '01',
     company: 'PICPAY',
     visual: 'picpay' as const,
@@ -24,6 +25,7 @@ const chapters = [
   },
   {
     id: 'observability',
+    href: '/work/ifood-observability',
     number: '02',
     company: 'IFOOD',
     visual: 'ifood' as const,
@@ -41,6 +43,7 @@ const chapters = [
   },
   {
     id: 'ai-infrastructure',
+    href: '/work/kinter-ai-infrastructure',
     number: '03',
     company: 'ALLOY / KINTER',
     visual: 'kinter' as const,
@@ -103,6 +106,9 @@ export default function ProfessionalProfile() {
             <a className="profile-text-link" href="#experience">
               Explore my experience <ArrowDown size={15} aria-hidden="true" />
             </a>
+            <a className="profile-text-link" href="/resume">
+              Read the full résumé <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
           </div>
         </div>
         <aside
@@ -156,6 +162,23 @@ export default function ProfessionalProfile() {
           </a>
         </aside>
       </section>
+      <dl
+        className="impact-strip homepage-impact"
+        aria-label="Selected engineering outcomes"
+      >
+        <div>
+          <dt>Lower mean time to detect incidents · iFood</dt>
+          <dd>40%</dd>
+        </div>
+        <div>
+          <dt>Fewer delayed-scaling incidents · PicPay</dt>
+          <dd>50%</dd>
+        </div>
+        <div>
+          <dt>Developer platform scope · iFood</dt>
+          <dd>5,000+</dd>
+        </div>
+      </dl>
       <section
         id="selected-work"
         className="work-chapters"
@@ -194,6 +217,18 @@ export default function ProfessionalProfile() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              <a
+                className="profile-text-link case-study-link"
+                href={chapter.href}
+              >
+                Read the{' '}
+                {chapter.company === 'ALLOY / KINTER'
+                  ? 'AI infrastructure'
+                  : chapter.company === 'IFOOD'
+                    ? 'observability'
+                    : 'Kubernetes'}{' '}
+                case study <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
             </div>
             <div className="chapter-metric">
               <strong>{chapter.metric}</strong>
@@ -368,6 +403,10 @@ export default function ProfessionalProfile() {
                 <h3>{job.title}</h3>
                 <p className="career-role">{job.role}</p>
                 <p>{job.detail}</p>
+                <a className="profile-text-link" href={`/resume#${job.id}`}>
+                  Read all responsibilities{' '}
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </article>
           ))}
@@ -452,6 +491,10 @@ export default function ProfessionalProfile() {
       </section>
       <footer className="profile-footer">
         <span>IAGO NEVES CALDEIRA · BRAZIL / LATAM · UTC−3</span>
+        <a href="/resume">Full résumé</a>
+        <a href={githubUrl} target="_blank" rel="me noopener">
+          GitHub ↗
+        </a>
         <a href="#console">Back to the console ↑</a>
       </footer>
     </main>

@@ -1,6 +1,7 @@
 import { technicalToolkit } from './technical-toolkit.ts';
 
 export const linkedInUrl = 'https://www.linkedin.com/in/iago-n-caldeira/';
+export const githubUrl = 'https://github.com/iagonc';
 
 export const publicSiteUrl = 'https://iagonc.github.io/';
 export const siteTitle =
@@ -16,12 +17,13 @@ export const profileStructuredData = {
   inLanguage: 'en',
   mainEntity: {
     '@type': 'Person',
+    '@id': `${publicSiteUrl}#person`,
     name: 'Iago Neves Caldeira',
     alternateName: 'Iago Caldeira',
     jobTitle: 'Senior Site Reliability Engineer',
     description:
       'Senior SRE, Platform Engineer and AI Engineer in Belo Horizonte, Brazil, Latin America (LATAM). Experience in AWS, Google Cloud (GCP), Kubernetes, observability, DevOps and production AI agent platforms.',
-    sameAs: [linkedInUrl],
+    sameAs: [linkedInUrl, githubUrl],
     ...(publicSiteUrl ? { url: publicSiteUrl } : {}),
     homeLocation: { '@type': 'Place', name: 'Belo Horizonte, Brazil' },
     knowsLanguage: ['Portuguese', 'English'],

@@ -39,7 +39,7 @@ Mission data and state transitions live in `app/arcade-model.ts`, UI in `app/arc
 
 ## Content
 
-Edit `app/portfolio.ts` for profile, jobs, skills and sample projects. Work experience is summarized from the supplied résumé. The three side-quest projects are explicitly fictional. Contact links use the verified LinkedIn URL in `app/site-config.ts`; phone and email details are not included. The résumé download is generated from the same data.
+Edit `app/portfolio.ts` for profile, jobs, skills and sample projects. The seven roles include 33 responsibility and outcome statements from the owner’s full résumé, with compact summaries for the handheld. The three side-quest projects are explicitly fictional. Contact links use the verified LinkedIn URL in `app/site-config.ts`; phone and email details are not included. The complete `/resume` page, résumé dialog and plain-text download use the same career data. The printable page includes education, certifications and training; fictional console concepts are excluded from the professional résumé.
 
 `app/page.tsx` renders the console and a readable professional profile. The profile, three career chapters, expertise and job history are present in the initial HTML. Edit that content in `app/professional-profile.tsx` and its styles in `app/profile.css`. Console keyboard shortcuts stop handling keys when the console is off screen, so visitors can read and scroll normally.
 
@@ -47,15 +47,21 @@ Each featured chapter includes a Product / Scale / My contribution explorer with
 
 ## Search and LinkedIn
 
-The `#toolkit` section displays 50 technologies and engineering practices in six groups. `app/technical-toolkit.ts` supplies the visible inventory, the full résumé dialog, the text download and the Person schema. The player card links to this inventory and summarizes cloud, observability, programming and AI tools. The handheld's short toolkit pages stay compact for its small screen. Skill names come from the existing résumé/toolkit, career chapters and the résumé evidence recorded in `docs/seo-keyword-research.md`; fictional concepts are excluded.
+The `#toolkit` section displays 83 technologies and engineering practices in six groups. `app/technical-toolkit.ts` supplies the visible inventory, the full résumé dialog, the text download and the Person schema. The player card links to this inventory and summarizes cloud, observability, programming and AI tools. The handheld's short toolkit pages stay compact for its small screen. Skill names come from the existing résumé/toolkit, career chapters and the résumé evidence recorded in `docs/seo-keyword-research.md`; fictional concepts are excluded.
 
 The site includes descriptive metadata, Open Graph/Twitter text, ProfilePage/Person JSON-LD and direct LinkedIn links. See `docs/seo-keyword-research.md` for the sourced keyword research and `docs/seo-implementation.md` for technical decisions, public-launch steps and measurement limits.
 
 All public copy is in English. The professional profile identifies Brazil / Latin America (LATAM), UTC−3, language proficiency, and experience relevant to SRE, Platform, Infrastructure, DevOps and AI Platform / Infrastructure Engineer roles. Four expertise areas link to actual career examples. “Senior & Staff opportunities” appears in the recruiter brief as desired opportunity levels; historical job titles and the structured Person job title remain unchanged. Location does not imply work authorization or immediate availability.
 
-The public origin is **https://iagonc.github.io/**. Canonical, Open Graph, structured data and sitemap URLs derive from `app/site-config.ts`. The sharing preview is a 1200 × 630 capture of the actual console in a compact composition. Before dev/build, `scripts/generate-static-assets.mjs` generates the résumé, robots and sitemap as static files. The résumé uses the browser's download attribute; GitHub Pages cannot add the former custom `X-Robots-Tag` header. Robots excludes `/resume.txt` from crawling and the sitemap lists only the homepage; this is not a guarantee that the download URL cannot be indexed.
+The public origin is **https://iagonc.github.io/**. Canonical, Open Graph, structured data and sitemap URLs derive from `app/site-config.ts`. The sharing preview is a 1200 × 630 capture of the actual console in a compact composition. Before dev/build, `scripts/generate-static-assets.mjs` generates the résumé, robots and sitemap as static files. The résumé uses the browser's download attribute; GitHub Pages cannot add the former custom `X-Robots-Tag` header. Robots excludes `/resume.txt` from crawling and the sitemap lists the homepage, full résumé and three engineering case studies; this is not a guarantee that the download URL cannot be indexed.
 
 Edit `app/globals.css` for the shell, LCD, controls and responsive layout. The locally bundled VT323 font is licensed under the SIL Open Font License in `public/fonts/OFL.txt`.
+
+## Engineering case studies
+
+`app/case-studies.ts` contains owner-supplied engineering scope and outcomes for `/work/ifood-observability`, `/work/picpay-kubernetes` and `/work/kinter-ai-infrastructure`. The shared page in `app/work/[slug]/page.tsx` exports all three paths at build time, with independent canonical URLs, metadata and Article authorship. Each page connects to the complete role in `/resume` and reuses the product explorer with its dated public company sources.
+
+Internal navigation uses native anchors on this static site. The lint rule requiring `next/link` is disabled because its client navigation failed in the exported build during browser QA. Default URLs without a trailing slash also avoid a prerender redirect in the installed exporter. The output contains `resume.html` and `work/*.html`, served through the extensionless paths tested over HTTP.
 
 ## Deploy
 

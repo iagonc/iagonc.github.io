@@ -161,7 +161,7 @@
   align-self: center;
   padding: 32px;
 }
-.explorer-product-copy h4 {
+.explorer-product-copy :is(h3, h4) {
   font:
     400 clamp(25px, 2.6vw, 34px)/1.12 Georgia,
     serif;
@@ -220,7 +220,7 @@
   color: var(--experience-accent);
   margin-top: 8px;
 }
-.explorer-scale-copy h4 {
+.explorer-scale-copy :is(h3, h4) {
   font-size: 14px;
   margin: 8px 0 18px;
 }
@@ -364,7 +364,7 @@
   justify-content: space-between;
   gap: 20px;
 }
-.explorer-coverage-heading h4 {
+.explorer-coverage-heading :is(h3, h4) {
   font:
     400 24px/1.2 Georgia,
     serif;
@@ -480,7 +480,7 @@
     grid-template-columns: 130px minmax(0, 1fr) 20px;
     gap: 20px;
   }
-  .explorer-product-copy h4 {
+  .explorer-product-copy :is(h3, h4) {
     max-width: 440px;
     font-size: 30px;
   }
@@ -512,7 +512,7 @@
   .explorer-flow {
     padding: 24px 18px;
   }
-  .explorer-product-copy h4 {
+  .explorer-product-copy :is(h3, h4) {
     font-size: 27px;
   }
   .explorer-gallery {

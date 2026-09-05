@@ -329,9 +329,12 @@ const views = ['Product', 'Scale', 'My contribution'] as const;
 
 export default function ExperienceExplorer({
   company,
+  headingLevel = 4,
 }: {
   company: keyof typeof stories;
+  headingLevel?: 3 | 4;
 }) {
+  const Heading = headingLevel === 3 ? 'h3' : 'h4';
   const story = stories[company];
   const [view, setView] = useState(0);
   const [scope, setScope] = useState(0);
@@ -468,7 +471,7 @@ export default function ExperienceExplorer({
           </div>
           <div className="explorer-product-copy">
             <p className="explorer-label">{story.category}</p>
-            <h4>{story.title}</h4>
+            <Heading>{story.title}</Heading>
             <p>{story.description}</p>
             <p className="explorer-snapshot">{story.snapshot}</p>
           </div>
@@ -505,7 +508,7 @@ export default function ExperienceExplorer({
             <div className="explorer-scale-copy" key={scope}>
               <p className="explorer-label">{metric.period}</p>
               <strong className="explorer-number">{metric.value}</strong>
-              <h4>{metric.unit}</h4>
+              <Heading>{metric.unit}</Heading>
               <p>{metric.description}</p>
               <small>
                 {scope === 0 ? (
@@ -580,7 +583,9 @@ export default function ExperienceExplorer({
         aria-labelledby={`${company}-coverage-title`}
       >
         <div className="explorer-coverage-heading">
-          <h4 id={`${company}-coverage-title`}>In the news & engineering.</h4>
+          <Heading id={`${company}-coverage-title`}>
+            In the news & engineering.
+          </Heading>
           <span className="explorer-label">COMPANY CONTEXT</span>
         </div>
         <p className="explorer-coverage-note">
