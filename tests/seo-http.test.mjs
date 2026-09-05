@@ -158,6 +158,7 @@ test('static resume is available through a real download link', async () => {
 test('missing pages return a genuine 404, not an indexable success response', async () => {
   const missing = await fetch(`${origin}/missing-profile-seo-check`);
   assert.equal(missing.status, 404);
+  await missing.arrayBuffer();
 });
 
 test('sharing metadata points to a full-size public preview image', async () => {
@@ -184,6 +185,10 @@ test('the static entry point resolves its scripts, stylesheets, font and icon', 
   for (const path of paths) {
     const asset = await fetch(new URL(path, origin));
     assert.equal(asset.status, 200, `Missing published asset: ${path}`);
+    assert.ok(
+      (await asset.arrayBuffer()).byteLength > 0,
+      `Empty published asset: ${path}`,
+    );
   }
 });
 
