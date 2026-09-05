@@ -1,0 +1,727 @@
+/* The cartridges and field notes share the console's paper, plastic and ink. */
+.site-header .play-nav {
+  color: #632639;
+}
+.site-header .play-nav.nav-active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.portfolio-shell .intro-note {
+  padding-bottom: 0;
+}
+.portfolio-shell .intro-note h1 {
+  font-size: clamp(28px, 2.5vw, 37px);
+  margin-bottom: 18px;
+}
+.portfolio-shell .intro-note > p {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.cartridge-shelf {
+  margin-top: 32px;
+  max-width: 254px;
+}
+.shelf-label {
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+  color: #777168;
+}
+.cartridge {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 9px 16px 12px;
+  margin-bottom: 14px;
+  border-radius: 5px 5px 10px 10px;
+  text-align: left;
+  background: linear-gradient(140deg, #d1cec5, #c3c0b7);
+  border: 1px solid #b8b4a9;
+  box-shadow:
+    inset 1px 1px 1px #f6f3e9,
+    inset -1px -2px 2px #969388,
+    1px 4px 1px #b2aea2,
+    3px 9px 12px #413e3212;
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 0.2s;
+}
+.cartridge:hover {
+  transform: translate(5px, -2px) rotate(-1deg);
+  box-shadow:
+    inset 1px 1px 1px #f6f3e9,
+    inset -1px -2px 2px #969388,
+    1px 4px 1px #b2aea2,
+    3px 12px 16px #413e3226;
+}
+.cartridge.is-inserted {
+  transform: translateX(9px);
+}
+.cartridge:active {
+  transform: translate(9px, 2px);
+}
+.cartridge::before,
+.cartridge::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  top: 17px;
+  bottom: 15px;
+  background: repeating-linear-gradient(
+    0deg,
+    #b8b4a8 0,
+    #b8b4a8 2px,
+    #dad6ca 3px,
+    #dad6ca 4px
+  );
+}
+.cartridge::before {
+  left: 3px;
+}
+.cartridge::after {
+  right: 3px;
+}
+.cartridge-grip {
+  display: block;
+  width: 55%;
+  height: 4px;
+  margin: 0 auto 7px;
+  background: linear-gradient(#9f9c92, #e1ddd1);
+  border-radius: 2px;
+}
+.cartridge-label {
+  display: block;
+  position: relative;
+  background: #eeebdf;
+  color: #454839;
+  padding: 7px 10px 8px;
+  border: 1px solid #aba899;
+  border-radius: 2px 2px 5px 5px;
+  box-shadow: inset 0 0 5px #a8a08730;
+}
+.cartridge-signal .cartridge-label {
+  color: #5b3a43;
+}
+.cartridge-agent .cartridge-label {
+  color: #35434f;
+}
+.cartridge-serial {
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+.cartridge-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 5px;
+}
+.cartridge-title strong {
+  font:
+    23px/1 'VT323',
+    monospace;
+  text-transform: uppercase;
+  font-weight: 400;
+  flex: 1;
+}
+.cartridge-title > svg {
+  flex-shrink: 0;
+}
+.cartridge-subtitle {
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  display: block;
+  padding-top: 5px;
+  border-top: 3px double currentColor;
+}
+.cartridge-notch {
+  position: absolute;
+  bottom: 2px;
+  left: 48%;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 3px solid #8f8b7f;
+}
+.shelf-footnote {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #777168;
+  margin-top: 18px;
+}
+
+.arcade-screen {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--lcd-dark);
+  animation: screen-reveal 0.24s steps(4);
+}
+.arcade-heading > span {
+  display: block;
+  font-size: 3.2cqw;
+  line-height: 1;
+}
+.arcade-heading h2 {
+  font-size: 6.3cqw;
+  line-height: 1;
+  margin: 0.4cqw 0 1cqw;
+  white-space: nowrap;
+  letter-spacing: -0.025em;
+}
+.arcade-small {
+  font-size: 2.75cqw;
+  line-height: 1;
+}
+.mission-picker > .arcade-small {
+  font-size: 2.35cqw;
+  margin: 0.4cqw 0 1cqw;
+}
+.mission-menu {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1cqw;
+}
+.mission-menu button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1.5cqw;
+  min-height: 6.5cqw;
+  padding: 0.5cqw 1cqw;
+  border: 0.3cqw solid currentColor;
+  text-align: left;
+  font-size: 4.1cqw;
+  line-height: 1;
+}
+.mission-menu button > span {
+  font-size: 2.7cqw;
+  width: 3.5cqw;
+  flex-shrink: 0;
+}
+.mission-menu button strong {
+  font-weight: 400;
+  flex: 1;
+  text-transform: uppercase;
+}
+.mission-menu button svg {
+  width: 3.2cqw;
+  height: 3.2cqw;
+}
+.mission-menu .selected,
+.mission-actions .selected,
+.arcade-primary {
+  background: var(--lcd-dark);
+  color: var(--lcd-light);
+}
+.mission-picker-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1cqw;
+  font-size: 2.6cqw;
+  line-height: 1;
+}
+.mission-status {
+  flex-shrink: 0;
+}
+.mission-status h2 {
+  font-size: 5cqw;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 0.8cqw;
+}
+.mission-status > span {
+  display: block;
+  font-size: 2.65cqw;
+  line-height: 1;
+}
+.mission-diagram {
+  display: block;
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  margin: 0.8cqw 0;
+  overflow: visible;
+}
+.mission-diagram text {
+  font-family: 'VT323', monospace;
+  font-size: 12px;
+  fill: currentColor;
+  stroke: none;
+}
+.diagram-wire {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.4;
+}
+.diagram-node {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.packet-flow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-dasharray: 3 10;
+  animation: packet-travel 0.9s linear infinite;
+}
+.pod-online > rect {
+  fill: var(--lcd-dark);
+  stroke: var(--lcd-dark);
+  stroke-width: 1.5;
+}
+.pod-online .pod-light {
+  fill: var(--lcd-light);
+  stroke: none;
+  animation: pod-blink 2s steps(2, start) infinite;
+}
+.pod-online text {
+  fill: var(--lcd-light);
+}
+.pod-offline > rect {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-dasharray: 3 2;
+  opacity: 0.45;
+}
+.pod-offline text {
+  opacity: 0.6;
+}
+.trace-node > rect,
+.agent-node > rect {
+  fill: var(--lcd-light);
+  stroke: currentColor;
+  stroke-width: 1;
+}
+.trace-selected > rect {
+  stroke-width: 3;
+}
+.trace-inspected > rect {
+  stroke-dasharray: 2 2;
+}
+.trace-found > rect {
+  fill: var(--lcd-dark);
+  stroke-width: 2;
+}
+.trace-found > svg {
+  color: var(--lcd-light);
+}
+.trace-found > text:last-child {
+  animation: pod-blink 1s steps(2, start) 3;
+}
+.agent-node > rect {
+  stroke-dasharray: 2 2;
+  opacity: 0.6;
+}
+.agent-current > rect {
+  fill: var(--lcd-dark);
+  stroke-width: 2;
+  stroke-dasharray: none;
+  opacity: 1;
+}
+.agent-current > svg {
+  color: var(--lcd-light);
+}
+.agent-done > rect {
+  stroke-dasharray: none;
+  stroke-width: 2;
+  opacity: 1;
+}
+.agent-node > text {
+  font-size: 11px;
+}
+.human-gate {
+  animation: pod-blink 1.4s steps(2, start) infinite;
+}
+.mission-message {
+  min-height: 6cqw;
+  max-height: 6cqw;
+  font-size: 2.95cqw;
+  line-height: 1;
+  margin: 0 0 1.2cqw;
+  display: flex;
+  align-items: center;
+  animation: screen-reveal 0.15s steps(3);
+}
+.mission-actions {
+  display: flex;
+  gap: 1cqw;
+  flex-shrink: 0;
+}
+.mission-actions button {
+  flex: 1;
+  padding: 1cqw 0.4cqw;
+  min-height: 5cqw;
+  font-size: 3.1cqw;
+  line-height: 1;
+  text-align: center;
+  border: 0.3cqw solid currentColor;
+  white-space: nowrap;
+}
+.mission-actions.three-actions button {
+  font-size: 2.7cqw;
+}
+.arcade-primary {
+  padding: 1.1cqw;
+  font-size: 3.4cqw;
+  line-height: 1;
+  width: 100%;
+}
+.quest-complete {
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 1cqw 0;
+}
+.badge-reveal {
+  display: flex;
+  align-items: center;
+  gap: 4cqw;
+  animation: badge-arrive 0.45s cubic-bezier(0.2, 1.5, 0.5, 1);
+}
+.badge-reveal > svg {
+  width: 14cqw;
+  height: 14cqw;
+}
+.badge-reveal > span {
+  font-size: 4cqw;
+  animation: pod-blink 0.8s steps(2, start) 3;
+}
+.quest-complete h2 {
+  font-size: 5cqw;
+  line-height: 1;
+  margin: 0;
+}
+.quest-complete p {
+  font-size: 3.2cqw;
+  line-height: 1;
+  margin: 0;
+}
+.portfolio-shell .screen-menu button {
+  font-size: 4.05cqw;
+  line-height: 1.04;
+  padding: 0.05cqw 0.8cqw;
+}
+.portfolio-shell .player-name {
+  font-size: 9.8cqw;
+  margin-top: 0.1cqw;
+}
+.portfolio-shell .player-role {
+  margin: 1.3cqw 0;
+}
+
+.mission-notes {
+  width: 100%;
+  max-width: 274px;
+  justify-self: end;
+}
+.notes-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 0.025em;
+  color: #6a675b;
+  margin-bottom: 17px;
+}
+.mission-notes > h2 {
+  font:
+    29px/1.1 Georgia,
+    serif;
+  letter-spacing: -0.035em;
+  margin: 0 0 14px;
+}
+.mission-instruction {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+.real-experience {
+  padding: 19px 0 0;
+  margin-top: 23px;
+  border-top: 1px solid #b8b3a7;
+}
+.notes-kicker {
+  font-size: 9px;
+  color: #746e60;
+  letter-spacing: 0.03em;
+}
+.experience-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+.experience-stat strong {
+  font:
+    44px/0.9 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+}
+.experience-stat > span {
+  font-size: 11px;
+  max-width: 110px;
+  line-height: 1.45;
+}
+.real-experience > p {
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.notes-employer {
+  display: block;
+  font-size: 10px;
+  color: #632639;
+}
+.real-experience .notes-tools {
+  font-size: 9px;
+  color: #777167;
+  margin-top: 6px;
+}
+.notes-career {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 4px 0;
+}
+.simulation-note {
+  font-size: 8px;
+  line-height: 1.55;
+  color: #827d73;
+  margin: 15px 0 0;
+}
+.badge-collection {
+  margin: 24px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #b8b3a7;
+}
+.badge-collection > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #746e60;
+}
+.collection-slots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.collection-slots > button {
+  position: relative;
+  flex-shrink: 0;
+  width: 34px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  background: #e1ded5;
+  border: 1px dashed #aaa596;
+  color: #a7a192;
+  border-radius: 2px 2px 10px 2px;
+  transition: all 0.25s;
+}
+.collection-slots > button:hover {
+  color: #474c38;
+  transform: translateY(-2px);
+}
+.collection-slots > .badge-earned {
+  color: #454d32;
+  background: #dbdfc7;
+  border: 1px solid #87906c;
+  box-shadow: inset 0 0 0 2px #edf0dc;
+  animation: badge-arrive 0.45s cubic-bezier(0.2, 1.5, 0.5, 1);
+}
+.collection-slots > button > svg:last-child:not(:first-child) {
+  position: absolute;
+  top: -5px;
+  right: -4px;
+  background: #eeecdf;
+  border-radius: 50%;
+}
+.collection-slots > p {
+  font-size: 8px;
+  line-height: 1.55;
+  margin-left: 3px;
+  color: #777167;
+}
+.mission-key-hints {
+  display: flex;
+  gap: 14px;
+  font-size: 15px;
+  margin-top: 23px;
+}
+.mission-key-hints b {
+  font-size: 9px;
+  font-weight: 400;
+}
+.mission-notes .resume-link {
+  font-size: 10px;
+  margin-top: 13px;
+}
+.notes-complete .notes-heading {
+  color: #66723f;
+}
+.notes-complete > h2 {
+  animation: screen-reveal 0.3s;
+}
+@keyframes packet-travel {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+@keyframes pod-blink {
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes badge-arrive {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+@media (max-width: 1100px) {
+  .cartridge-shelf {
+    max-width: 215px;
+    margin-top: 24px;
+  }
+  .cartridge {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .cartridge-title {
+    gap: 6px;
+  }
+  .cartridge-title strong {
+    font-size: 20px;
+  }
+  .cartridge-title > svg:first-child {
+    width: 19px;
+  }
+  .cartridge-serial {
+    font-size: 6px;
+  }
+  .cartridge-subtitle {
+    font-size: 6px;
+  }
+  .mission-notes {
+    max-width: 230px;
+  }
+  .mission-notes > h2 {
+    font-size: 25px;
+  }
+  .mission-instruction {
+    font-size: 11px;
+  }
+  .experience-stat strong {
+    font-size: 38px;
+  }
+  .collection-slots {
+    gap: 6px;
+  }
+  .collection-slots > button {
+    width: 30px;
+  }
+}
+@media (min-width: 621px) and (max-width: 900px) {
+  .portfolio-shell .main-stage {
+    grid-template-columns: minmax(300px, 390px) minmax(190px, 230px);
+    max-width: 690px;
+    gap: 30px;
+  }
+  .mission-notes {
+    width: 100%;
+  }
+}
+@media (max-width: 620px) {
+  .portfolio-shell .site-header nav > .play-nav {
+    display: block;
+    font-size: 10px;
+  }
+  .mission-notes {
+    max-width: 370px;
+    margin: 35px auto 0;
+    padding: 22px 4px 0;
+    border-top: 1px solid #aaa79d;
+  }
+  .notes-heading {
+    font-size: 10px;
+    margin-bottom: 14px;
+  }
+  .mission-notes > h2 {
+    font-size: 32px;
+  }
+  .mission-instruction {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .real-experience {
+    margin-top: 22px;
+    padding-top: 20px;
+  }
+  .notes-kicker {
+    font-size: 10px;
+  }
+  .experience-stat strong {
+    font-size: 48px;
+  }
+  .experience-stat > span {
+    font-size: 13px;
+    max-width: none;
+  }
+  .real-experience > p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .notes-employer {
+    font-size: 12px;
+  }
+  .real-experience .notes-tools {
+    font-size: 11px;
+  }
+  .notes-career {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+  .simulation-note {
+    font-size: 10px;
+  }
+  .badge-collection > div:first-child {
+    font-size: 10px;
+  }
+  .collection-slots > button {
+    width: 42px;
+    height: 44px;
+  }
+  .collection-slots > p {
+    font-size: 10px;
+  }
+  .mission-key-hints {
+    gap: 24px;
+    margin-top: 22px;
+  }
+  .mission-key-hints b {
+    font-size: 12px;
+  }
+  .mission-notes .resume-link {
+    font-size: 12px;
+    margin-top: 22px;
+  }
+}

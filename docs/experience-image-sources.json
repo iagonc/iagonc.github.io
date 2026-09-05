@@ -1,0 +1,68 @@
+[
+  {
+    "file": "public/images/experience/picpay-screen-1.webp",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d9/72/78/d9727860-4a0b-c5e7-ade9-18582663fe75/22_06_26_Picpay_iOS65_Principal_01.png/600x1300bb.webp",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 600,
+    "height": 1299
+  },
+  {
+    "file": "public/images/experience/picpay-screen-2.webp",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4d/4c/bb/4d4cbb79-bd37-9738-30a2-2f088d02eaa1/22_06_26_Picpay_iOS65_Principal_05.png/600x1300bb.webp",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 600,
+    "height": 1299
+  },
+  {
+    "file": "public/images/experience/picpay-screen-3.webp",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/07/63/52/076352fc-a38f-4c7f-e413-6146a4c50bae/22_06_26_Picpay_iOS65_Principal_06.png/600x1300bb.webp",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 600,
+    "height": 1299
+  },
+  {
+    "file": "public/images/experience/ifood-screen-1.png",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7a/e9/d7/7ae9d7b5-9869-80b5-cbce-a258838d0667/dc077627-30e4-45b6-bcf0-79446968d92f_pg2.png/392x696bb.png",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 392,
+    "height": 696
+  },
+  {
+    "file": "public/images/experience/ifood-screen-2.png",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4a/e9/2c/4ae92c2f-f997-6951-c6ba-09ae79051d19/d2ddaae4-998d-4090-9160-ddf273d86b86_pg3.png/392x696bb.png",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 392,
+    "height": 696
+  },
+  {
+    "file": "public/images/experience/ifood-screen-3.png",
+    "source": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/76/65/44/76654484-94af-167a-a40b-833b33538aa2/469f1292-88f3-4cdc-ade8-982942b0dcd8_pg4.png/392x696bb.png",
+    "retrieved": "2026-09-05",
+    "kind": "Developer-published App Store screenshot",
+    "width": 392,
+    "height": 696
+  },
+  {
+    "file": "public/images/experience/kinter.png",
+    "source": "https://cdn.prod.website-files.com/697709874848f6d970635e79%2F69c2edaeaf2b2161c7fce57e_flow3_mp4.mp4",
+    "retrieved": "2026-09-05",
+    "kind": "Public demo frame",
+    "timeSeconds": 13,
+    "width": 1280,
+    "height": 710
+  },
+  {
+    "file": "public/images/experience/kinter-schedule.png",
+    "source": "https://cdn.prod.website-files.com/697709874848f6d970635e79%2F69c2ea7aa18ebd8d47dc77d7_flow1_mp4.mp4",
+    "retrieved": "2026-09-05",
+    "kind": "Public demo frame",
+    "timeSeconds": 16,
+    "width": 1280,
+    "height": 710
+  }
+]
