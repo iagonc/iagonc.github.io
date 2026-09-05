@@ -47,6 +47,8 @@ Each featured chapter includes a Product / Scale / My contribution explorer with
 
 ## Search and LinkedIn
 
+The `#toolkit` section displays 50 technologies and engineering practices in six groups. `app/technical-toolkit.ts` supplies the visible inventory, the full résumé dialog, the text download and the Person schema. The player card links to this inventory and summarizes cloud, observability, programming and AI tools. The handheld's short toolkit pages stay compact for its small screen. Skill names come from the existing résumé/toolkit, career chapters and the résumé evidence recorded in `docs/seo-keyword-research.md`; fictional concepts are excluded.
+
 The site includes descriptive metadata, Open Graph/Twitter text, ProfilePage/Person JSON-LD and direct LinkedIn links. See `docs/seo-keyword-research.md` for the sourced keyword research and `docs/seo-implementation.md` for technical decisions, public-launch steps and measurement limits.
 
 All public copy is in English. The professional profile identifies Brazil / Latin America (LATAM), UTC−3, language proficiency, and experience relevant to SRE, Platform, Infrastructure, DevOps and AI Platform / Infrastructure Engineer roles. Four expertise areas link to actual career examples. “Senior & Staff opportunities” appears in the recruiter brief as desired opportunity levels; historical job titles and the structured Person job title remain unchanged. Location does not imply work authorization or immediate availability.

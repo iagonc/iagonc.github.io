@@ -2,6 +2,7 @@ import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import { experience } from './portfolio';
 import { linkedInUrl } from './site-config';
 import ExperienceExplorer from './experience-explorer';
+import { technicalToolkit } from './technical-toolkit';
 
 const chapters = [
   {
@@ -128,8 +129,17 @@ export default function ProfessionalProfile() {
               <dd>Observability & AI infrastructure</dd>
             </div>
             <div>
-              <dt>MAIN TOOLKIT</dt>
-              <dd>AWS · GCP · Kubernetes · Terraform</dd>
+              <dt>TOOLKIT AT A GLANCE</dt>
+              <dd className="player-toolkit">
+                <span>AWS · GCP · Kubernetes · Terraform</span>
+                <span>Datadog · Prometheus · Grafana</span>
+                <span>Go · Python · TypeScript</span>
+                <span>LangGraph · Bedrock · MCP</span>
+                <a className="profile-text-link" href="#toolkit">
+                  Explore the full toolkit{' '}
+                  <ArrowDown size={13} aria-hidden="true" />
+                </a>
+              </dd>
             </div>
             <div>
               <dt>HOME BASE</dt>
@@ -205,7 +215,7 @@ export default function ProfessionalProfile() {
       >
         <div className="profile-section-heading">
           <div>
-            <p className="profile-eyebrow">THE WORKING TOOLKIT</p>
+            <p className="profile-eyebrow">AREAS OF PRACTICE</p>
             <h2 id="expertise-title">Infrastructure. Platforms. Applied AI.</h2>
           </div>
           <p>Four areas of practice, grounded in real engineering work.</p>
@@ -294,6 +304,42 @@ export default function ProfessionalProfile() {
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </section>
+        </div>
+      </section>
+      <section
+        id="toolkit"
+        className="technical-toolkit"
+        aria-labelledby="toolkit-title"
+      >
+        <div className="profile-section-heading">
+          <div>
+            <p className="profile-eyebrow">THE FULL INVENTORY</p>
+            <h2 id="toolkit-title">The tools behind the work.</h2>
+          </div>
+          <p>
+            Cloud, delivery, reliability, security, code and AI.
+            <br />
+            Technologies and practices from my engineering experience.
+          </p>
+        </div>
+        <div className="toolkit-grid">
+          {technicalToolkit.map((group, index) => (
+            <section className="toolkit-group" key={group.title}>
+              <span className="expertise-number">
+                {String(index + 1).padStart(2, '0')} / TOOLKIT
+              </span>
+              <h3>{group.title}</h3>
+              <p>{group.description}</p>
+              <ul aria-label={`${group.title} technologies and practices`}>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <a className="profile-text-link" href={group.href}>
+                {group.linkLabel} <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </section>
+          ))}
         </div>
       </section>
       <section

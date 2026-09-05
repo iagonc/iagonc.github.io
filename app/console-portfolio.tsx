@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { experience, projects, toolkit, profile } from './portfolio';
 import { linkedInUrl } from './site-config';
+import { technicalToolkit } from './technical-toolkit';
 import { ArcadeScreen, CartridgeShelf, MissionNotes } from './arcade';
 import {
   arcadeReducer,
@@ -86,7 +87,7 @@ function Resume({
           </section>
         ))}
         <h2>Toolkit</h2>
-        {toolkit.map((group) => (
+        {technicalToolkit.map((group) => (
           <p key={group.title}>
             <strong>{group.title}: </strong>
             {group.items.join(', ')}.

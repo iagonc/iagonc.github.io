@@ -162,6 +162,14 @@
   line-height: 1.55;
   margin: 0;
 }
+.player-toolkit {
+  display: grid;
+  gap: 7px;
+}
+.player-toolkit .profile-text-link {
+  margin-top: 3px;
+  font-size: 10px;
+}
 .player-card > a {
   display: flex;
   align-items: center;
@@ -297,6 +305,7 @@
   margin: 10px 0 0;
 }
 .expertise-section,
+.technical-toolkit,
 .career-section {
   padding-top: 90px;
 }
@@ -345,6 +354,50 @@
   font-size: 12px;
   color: #536048;
   margin-top: 24px;
+}
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 34px;
+}
+.toolkit-group {
+  min-width: 0;
+  padding: 26px 0 18px;
+  border-top: 1px solid var(--border);
+}
+.toolkit-group h3 {
+  font:
+    400 25px/1.2 Georgia,
+    serif;
+  letter-spacing: -0.025em;
+  margin: 16px 0 12px;
+}
+.toolkit-group p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #625e55;
+}
+.toolkit-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+}
+.toolkit-group li {
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid #d3d1c6;
+  background: #e7e6dd;
+  color: #41483b;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.toolkit-group .profile-text-link {
+  font-size: 11px;
 }
 .career-entry {
   display: grid;
@@ -517,6 +570,10 @@
   }
 }
 @media (max-width: 800px) {
+  .toolkit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 26px;
+  }
   .professional-profile {
     padding: 35px 28px 0;
   }
@@ -655,11 +712,16 @@
     font-size: 27px;
   }
   .expertise-section,
+  .technical-toolkit,
   .career-section {
     padding-top: 65px;
   }
   .expertise-grid {
     grid-template-columns: 1fr;
+  }
+  .toolkit-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
   .expertise-grid > section:nth-child(n) {
     padding: 28px 0;

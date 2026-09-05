@@ -1,4 +1,5 @@
 import { linkedInUrl } from './site-config.ts';
+import { technicalToolkit } from './technical-toolkit.ts';
 
 export const experience = [
   {
@@ -155,4 +156,4 @@ export const toolkit = [
     ],
   },
 ];
-export const resumeText = `IAGO NEVES CALDEIRA\nSenior Site Reliability Engineer / Platform Engineer / AI Engineer\nBelo Horizonte, Brazil · Latin America (LATAM) · UTC−3\nLinkedIn: ${linkedInUrl}\n\nPROFILE\nSenior SRE, Platform Engineer and AI Engineer. AWS and Google Cloud Platform (GCP), Kubernetes, DevOps, observability and production AI infrastructure.\n\nEXPERIENCE\n\n${experience.map((job) => `${job.title} | ${job.date}\n${job.role}\n${job.detail}`).join('\n\n')}\n\nTOOLKIT\n\n${toolkit.map((group) => `${group.title}: ${group.items.join(', ')}`).join('\n')}\n\nEDUCATION\nInformation Systems, IFMG (studies listed in supplied resume)\n\nLANGUAGES\nPortuguese: native / English: advanced\n\nFICTIONAL PROJECT EXAMPLES\n${projects.map((project) => `${project.title}: ${project.detail}`).join('\n')}\n`;
+export const resumeText = `IAGO NEVES CALDEIRA\nSenior Site Reliability Engineer / Platform Engineer / AI Engineer\nBelo Horizonte, Brazil · Latin America (LATAM) · UTC−3\nLinkedIn: ${linkedInUrl}\n\nPROFILE\nSenior SRE, Platform Engineer and AI Engineer. AWS and Google Cloud Platform (GCP), Kubernetes, DevOps, observability and production AI infrastructure.\n\nEXPERIENCE\n\n${experience.map((job) => `${job.title} | ${job.date}\n${job.role}\n${job.detail}`).join('\n\n')}\n\nTOOLKIT\n\n${technicalToolkit.map((group) => `${group.title}: ${group.items.join(', ')}`).join('\n')}\n\nEDUCATION\nInformation Systems, IFMG (studies listed in supplied resume)\n\nLANGUAGES\nPortuguese: native / English: advanced\n\nFICTIONAL PROJECT EXAMPLES\n${projects.map((project) => `${project.title}: ${project.detail}`).join('\n')}\n`;

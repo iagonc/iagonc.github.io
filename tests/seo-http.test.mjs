@@ -125,6 +125,45 @@ test('LinkedIn and section navigation are real crawlable anchors', () => {
   }
 });
 
+test('the full toolkit is readable without JavaScript and matches schema and resume', async () => {
+  assert.equal((visibleHtml.match(/class="toolkit-group"/g) || []).length, 6);
+  assert.match(visibleHtml, /href="#toolkit"/);
+  const inventory = visibleHtml
+    .split('id="toolkit"')[1]
+    ?.split('id="experience"')[0];
+  assert.ok(inventory);
+  assert.doesNotMatch(inventory, /\shidden(?:\s|=|>)|data-nosnippet/);
+  const identity = JSON.parse(
+    html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1],
+  );
+  const resume = await (await fetch(`${origin}/resume.txt`)).text();
+  for (const term of [
+    'Terragrunt',
+    'Atlantis',
+    'Argo CD (ArgoCD)',
+    'KEDA',
+    'GitLab CI/CD',
+    'Jenkins',
+    'Logz.io',
+    'HashiCorp Vault',
+    'HashiCorp Consul',
+    'Go (Golang)',
+    'Groovy',
+    'gRPC',
+    'RabbitMQ',
+    'Vertex AI',
+    'Model Context Protocol (MCP)',
+    'Prompt caching',
+  ]) {
+    assert.ok(inventory.includes(term), `Missing visible skill: ${term}`);
+    assert.ok(
+      identity.mainEntity.knowsAbout.includes(term),
+      `Missing schema skill: ${term}`,
+    );
+    assert.ok(resume.includes(term), `Missing resume skill: ${term}`);
+  }
+});
+
 test('robots and sitemap advertise the canonical public homepage', async () => {
   const robots = await fetch(`${origin}/robots.txt`);
   assert.equal(robots.status, 200);
