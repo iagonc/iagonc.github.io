@@ -147,6 +147,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
       <footer className="document-footer">
         <span>Belo Horizonte, Brazil / LATAM</span>
+        <a href="/consulting">Have a similar project? Explore consulting ↗</a>
         <a href={linkedInUrl} rel="me noopener" target="_blank">
           Discuss your engineering team ↗
         </a>

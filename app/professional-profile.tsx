@@ -413,6 +413,47 @@ export default function ProfessionalProfile() {
         </div>
       </section>
       <section
+        id="consulting"
+        className="consulting-callout"
+        aria-labelledby="consulting-title"
+      >
+        <div>
+          <p className="profile-eyebrow">
+            PROJECT-BASED / FIXED-TERM CONTRACTS
+          </p>
+          <h2 id="consulting-title">
+            A specific challenge.
+            <br />
+            An engineer to see it through.
+          </h2>
+          <p>
+            I also take on consulting projects and temporary contracts in SRE,
+            DevOps, cloud infrastructure, platform engineering and production
+            AI. From an architecture assessment to implementation and handover,
+            we can define the scope around what your team needs to ship or
+            improve.
+          </p>
+          <a className="linkedin-cta" href="/consulting">
+            Explore consulting services{' '}
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+        <ul aria-label="Consulting areas">
+          <li>
+            <span>01</span> SRE & observability
+          </li>
+          <li>
+            <span>02</span> AWS, GCP & Kubernetes
+          </li>
+          <li>
+            <span>03</span> DevOps & developer platforms
+          </li>
+          <li>
+            <span>04</span> AI infrastructure & LLMOps
+          </li>
+        </ul>
+      </section>
+      <section
         id="opportunities"
         className="recruiter-section"
         aria-labelledby="opportunities-title"
@@ -492,6 +533,7 @@ export default function ProfessionalProfile() {
       <footer className="profile-footer">
         <span>IAGO NEVES CALDEIRA · BRAZIL / LATAM · UTC−3</span>
         <a href="/resume">Full résumé</a>
+        <a href="/consulting">Consulting</a>
         <a href={githubUrl} target="_blank" rel="me noopener">
           GitHub ↗
         </a>

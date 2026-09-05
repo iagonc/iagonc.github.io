@@ -58,6 +58,9 @@ export default function ResumePage() {
             Download full résumé ↓
           </a>
           <PrintResume />
+          <a className="profile-text-link" href="/consulting">
+            Consulting & project contracts ↗
+          </a>
         </div>
       </header>
       <nav className="resume-jump-links" aria-label="Work history">

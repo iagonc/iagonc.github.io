@@ -8,7 +8,12 @@ if (site.protocol !== 'https:' || site.pathname !== '/') {
   throw new Error('The public site must use an HTTPS root origin.');
 }
 const publicDir = new URL('../public/', import.meta.url);
-const pages = ['', 'resume', ...caseStudies.map(({ slug }) => `work/${slug}`)];
+const pages = [
+  '',
+  'resume',
+  'consulting',
+  ...caseStudies.map(({ slug }) => `work/${slug}`),
+];
 await mkdir(publicDir, { recursive: true });
 await Promise.all([
   writeFile(new URL('resume.txt', publicDir), resumeText),

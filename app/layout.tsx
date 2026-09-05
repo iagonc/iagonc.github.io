@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   authors: [{ name: 'Iago Neves Caldeira', url: linkedInUrl }],
   creator: 'Iago Neves Caldeira',
+  verification: { google: 'EgFnXXafNoxjf7nwRHFu5ZxBhhMbL27qLsZeUfywPlk' },
   robots: { index: true, follow: true },
   ...(publicSiteUrl
     ? {

@@ -188,7 +188,7 @@ test('robots and sitemap advertise the canonical public homepage', async () => {
   assert.match(sitemap.headers.get('content-type'), /xml/);
   const xml = await sitemap.text();
   assert.ok(xml.includes(`<loc>${publicUrl}</loc>`));
-  assert.equal((xml.match(/<loc>/g) || []).length, 5);
+  assert.equal((xml.match(/<loc>/g) || []).length, 6);
   assert.doesNotMatch(xml, /localhost|example\.|linkedin\.com/);
 });
 
@@ -422,4 +422,60 @@ test('case studies have crawlable content, independent metadata and sitemap entr
 
 test('the decorative battery does not expose an invalid accessible name', () => {
   assert.match(visibleHtml, /class="lcd-battery" aria-hidden="true"/);
+});
+
+test('Google ownership verification survives static export', () => {
+  assert.match(
+    html,
+    /<meta name="google-site-verification" content="EgFnXXafNoxjf7nwRHFu5ZxBhhMbL27qLsZeUfywPlk"/,
+  );
+});
+
+test('consulting is discoverable with service content and a working contact path', async () => {
+  assert.match(visibleHtml, /href="\/consulting"/);
+  assert.match(visibleHtml, /id="consulting"/);
+  const response = await fetch(`${origin}/consulting`);
+  assert.equal(response.status, 200);
+  const content = await response.text();
+  const readable = content.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+  assert.equal((readable.match(/<h1\b/g) || []).length, 1);
+  for (const term of [
+    'fixed-term contracts',
+    'Typical deliverables',
+    'handover',
+    'Kubernetes',
+    'LLMOps',
+    'English and Portuguese',
+  ])
+    assert.ok(readable.includes(term), `Missing consulting content: ${term}`);
+  assert.ok(readable.includes(`href="${linkedIn}"`));
+  assert.match(content, /<meta name="robots" content="index, follow"/);
+  assert.ok(
+    content.includes(`<link rel="canonical" href="${publicUrl}consulting"`),
+  );
+  assert.ok(
+    content.includes(
+      `<meta property="og:url" content="${publicUrl}consulting"`,
+    ),
+  );
+  for (const [, id] of readable.matchAll(/href="#([^"]+)"/g))
+    assert.ok(
+      readable.includes(`id="${id}"`),
+      `Missing consulting anchor: ${id}`,
+    );
+  const service = JSON.parse(
+    content.match(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+    )[1],
+  );
+  assert.equal(service['@type'], 'Service');
+  assert.equal(service.url, `${publicUrl}consulting`);
+  assert.equal(service.provider['@id'], `${publicUrl}#person`);
+  for (const label of service.serviceType)
+    assert.ok(
+      readable.includes(label.replace(/&/g, '&amp;')),
+      `Schema service not visible: ${label}`,
+    );
+  const sitemap = await (await fetch(`${origin}/sitemap.xml`)).text();
+  assert.ok(sitemap.includes(`<loc>${publicUrl}consulting</loc>`));
 });

@@ -324,6 +324,7 @@ export default function ConsolePortfolio() {
           </button>
           <a href="#profile">Profile</a>
           <a href="#selected-work">Work</a>
+          <a href="/consulting">Consulting</a>
           <a className="header-resume" href="/resume">
             Résumé
           </a>
