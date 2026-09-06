@@ -64,7 +64,6 @@
   max-width: 590px;
 }
 .profile-body,
-.chapter-story > p,
 .career-entry p,
 .recruiter-intro > p:not(.profile-eyebrow),
 .connect-section p:not(.profile-eyebrow) {
@@ -204,99 +203,6 @@
 }
 .profile-section-heading .profile-eyebrow {
   margin-bottom: 10px;
-}
-.work-chapter {
-  display: grid;
-  grid-template-columns: 160px minmax(0, 1fr) 170px;
-  gap: 36px;
-  padding: 42px 0;
-  border-top: 1px solid var(--border);
-}
-.chapter-index > span {
-  font:
-    45px/1 'VT323',
-    monospace;
-  color: #7b796d;
-}
-.chapter-index > div {
-  margin-top: 20px;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 1.7;
-}
-.chapter-index small {
-  display: block;
-  font-size: 10px;
-  font-weight: normal;
-  margin-top: 4px;
-  color: #676359;
-}
-.chapter-story .chapter-discipline {
-  font-size: 10px;
-  color: #676359;
-  line-height: 1.6;
-  margin: 0 0 12px;
-}
-.chapter-story h3 {
-  font:
-    400 27px/1.2 Georgia,
-    serif;
-  letter-spacing: -0.03em;
-  margin: 0 0 20px;
-}
-.chapter-story > p {
-  margin: 0 0 18px;
-}
-.chapter-story .chapter-takeaway {
-  border-left: 2px solid #819166;
-  padding-left: 16px;
-  color: #536048;
-  font-size: 12px;
-}
-.chapter-takeaway strong {
-  display: block;
-  font-size: 10px;
-  color: #35452b;
-  margin-bottom: 5px;
-}
-.chapter-stack {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 22px 0 0;
-}
-.chapter-stack li {
-  padding: 5px 8px;
-  background: #e4e2d9;
-  font-size: 10px;
-}
-.chapter-metric {
-  align-self: start;
-  padding: 22px 15px;
-  text-align: center;
-  color: #36452b;
-  background: #e2e4d3;
-  border: 1px solid #b5bba0;
-}
-.chapter-metric strong {
-  display: block;
-  font:
-    52px/1 'VT323',
-    monospace;
-}
-.chapter-metric span {
-  display: block;
-  font-size: 10px;
-  line-height: 1.7;
-  margin-top: 7px;
-}
-.chapter-metric .chapter-metric-caption {
-  border-top: 1px dashed #b5bba0;
-  padding-top: 12px;
-  margin-top: 18px;
-  font-size: 9px;
 }
 .work-footnote {
   font-size: 10px;
@@ -561,10 +467,6 @@
   .profile-introduction {
     gap: 38px;
   }
-  .work-chapter {
-    grid-template-columns: 115px minmax(0, 1fr) 145px;
-    gap: 25px;
-  }
   .site-header nav {
     gap: 24px;
   }
@@ -584,22 +486,6 @@
   }
   .player-card {
     padding: 20px;
-  }
-  .work-chapter {
-    grid-template-columns: minmax(0, 1fr) 135px;
-  }
-  .chapter-index {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .chapter-index > div {
-    margin: 0;
-  }
-  .chapter-index small {
-    display: inline;
-    margin-left: 14px;
   }
   .expertise-grid h3 {
     font-size: 20px;
@@ -675,41 +561,6 @@
   .profile-section-heading > p {
     max-width: none;
     margin: 0;
-  }
-  .work-chapter {
-    gap: 20px 15px;
-    padding: 30px 0;
-    grid-template-columns: 1fr 90px;
-  }
-  .chapter-index {
-    grid-column: 1;
-    flex-direction: column;
-    align-items: start;
-    gap: 5px;
-  }
-  .chapter-index small {
-    display: block;
-    margin: 2px 0 0;
-  }
-  .chapter-metric {
-    grid-column: 2;
-    grid-row: 1;
-    padding: 10px 6px;
-  }
-  .chapter-metric strong {
-    font-size: 35px;
-  }
-  .chapter-metric span {
-    font-size: 9px;
-  }
-  .chapter-metric .chapter-metric-caption {
-    display: none;
-  }
-  .chapter-story {
-    grid-column: 1 / -1;
-  }
-  .chapter-story h3 {
-    font-size: 27px;
   }
   .expertise-section,
   .technical-toolkit,

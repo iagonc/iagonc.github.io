@@ -2,6 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent } from 'react';
 import Image from 'next/image';
+import { caseStudies } from './case-studies';
 import { ArrowUpRight, Expand } from 'lucide-react';
 import {
   Dialog,
@@ -96,26 +97,6 @@ const stories = {
         legend: 'Each dot represents one cluster; + indicates more.',
       },
     ],
-    flow: [
-      {
-        label: 'Read demand',
-        tool: 'RabbitMQ',
-        detail:
-          'Use queue backlog as a workload signal. Pending work informs when processing capacity needs to grow.',
-      },
-      {
-        label: 'Scale workers',
-        tool: 'KEDA + Kubernetes',
-        detail:
-          'I implemented event-driven autoscaling with KEDA for RabbitMQ workloads, connecting processing capacity to queue demand.',
-      },
-      {
-        label: 'Operate reliably',
-        tool: 'New Relic + incident response',
-        detail:
-          'I improved production visibility and supported incident response across infrastructure spanning 300+ Kubernetes clusters.',
-      },
-    ],
   },
   ifood: {
     name: 'iFood',
@@ -203,26 +184,6 @@ const stories = {
         legend: 'Each dot represents one AWS account; + indicates more.',
       },
     ],
-    flow: [
-      {
-        label: 'Collect signals',
-        tool: 'AWS + Datadog',
-        detail:
-          'I worked on monitoring across 50+ AWS accounts and 3,000+ EC2 instances, bringing a large infrastructure estate into view.',
-      },
-      {
-        label: 'Standardize',
-        tool: 'Terraform + Python',
-        detail:
-          'I standardized observability and built infrastructure tooling that supported thousands of developers.',
-      },
-      {
-        label: 'Recover services',
-        tool: 'SLOs + recovery planning',
-        detail:
-          'My work included multi-region disaster recovery design for critical internal services, connecting visibility with recovery planning.',
-      },
-    ],
   },
   kinter: {
     name: 'Alloy / Kinter',
@@ -292,34 +253,14 @@ const stories = {
       },
       {
         label: 'My engineering scope',
-        value: 'HITL',
-        unit: 'human-in-the-loop execution',
+        value: '24/7',
+        unit: 'cloud operations & production AI',
         period: 'MY CAREER SCOPE / 2025–PRESENT',
         description:
-          'I architected an agent engine for general-ledger reconciliation with human approvals, durable SSE replay and execution audit trails.',
-        dots: 3,
+          'My work spans AWS and EKS on-call operations, GitOps delivery, large-scale logging and an AI agent engine, including model routing and MCP integrations.',
+        dots: 4,
         legend:
-          'Three controls: human approval, durable replay and audit trails.',
-      },
-    ],
-    flow: [
-      {
-        label: 'Prepare a proposal',
-        tool: 'LangGraph + Amazon Bedrock',
-        detail:
-          'My agent engineering work covers general-ledger reconciliation, model routing and prompt caching. The workflow prepares a proposal for review.',
-      },
-      {
-        label: 'Ask a human',
-        tool: 'Human-in-the-loop approval',
-        detail:
-          'Human approval is an explicit step in the agent workflow, keeping a person in control of the proposed action.',
-      },
-      {
-        label: 'Preserve the record',
-        tool: 'Durable SSE + audit trails',
-        detail:
-          'Durable event replay and execution audit trails make agent runs observable and preserve their history.',
+          'Four areas of work: cloud platforms, observability, agent engineering and LLM operations.',
       },
     ],
   },
@@ -336,6 +277,7 @@ export default function ExperienceExplorer({
 }) {
   const Heading = headingLevel === 3 ? 'h3' : 'h4';
   const story = stories[company];
+  const work = caseStudies.find((study) => study.visual === company)!.sections;
   const [view, setView] = useState(0);
   const [scope, setScope] = useState(0);
   const [step, setStep] = useState(0);
@@ -551,21 +493,21 @@ export default function ExperienceExplorer({
         tabIndex={0}
       >
         <div className="explorer-flow">
-          <p className="explorer-label">MY CONTRIBUTION / SELECT A STEP</p>
+          <p className="explorer-label">MY CONTRIBUTION / EXPLORE AN AREA</p>
           <fieldset
             className="explorer-steps"
-            aria-label={`${story.name} engineering workflow`}
+            aria-label={`${story.name} engineering scope`}
           >
-            {story.flow.map((item, index) => (
+            {work.map((item, index) => (
               <button
-                key={item.label}
+                key={item.title}
                 type="button"
                 aria-pressed={step === index}
                 onClick={() => setStep(index)}
               >
                 <span className="explorer-step-number">0{index + 1}</span>
-                <strong>{item.label}</strong>
-                <span>{item.tool}</span>
+                <strong>{item.title}</strong>
+                <span>{item.area}</span>
               </button>
             ))}
           </fieldset>
@@ -575,10 +517,11 @@ export default function ExperienceExplorer({
             aria-atomic="true"
           >
             <span aria-hidden="true">0{step + 1} /</span>
-            <p key={step}>{story.flow[step].detail}</p>
+            <p key={step}>{work[step].overview}</p>
           </div>
           <p className="explorer-flow-note">
-            Illustrative sequence based on my work. Select each step to explore.
+            Areas of my professional work. Read the full responsibilities in my
+            résumé.
           </p>
         </div>
       </div>

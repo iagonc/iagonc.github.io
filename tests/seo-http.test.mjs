@@ -91,6 +91,68 @@ test('search metadata and structured identity use the real LinkedIn profile', ()
   assert.equal(new URL(openGraphUrl[1]).href, publicUrl);
 });
 
+test('company chapters expose the breadth of personal work before product context', () => {
+  /** @type {Array<[string, string[]]>} */
+  const scopes = [
+    [
+      'platform-engineering',
+      ['VPC', 'IAM', 'Route 53', 'Terraform', 'New Relic', 'developers', '50%'],
+    ],
+    [
+      'observability',
+      [
+        '5,000+',
+        'GitLab CI',
+        'Python',
+        'Go',
+        'Gradle',
+        'Nexus',
+        'Istio',
+        '15-minute',
+        'Transit Gateway',
+      ],
+    ],
+    [
+      'ai-infrastructure',
+      [
+        '24/7',
+        'Argo CD',
+        'Atlantis',
+        'millions of events',
+        'terabytes',
+        'LangGraph',
+        'gRPC',
+        'model selection',
+        'MCP',
+      ],
+    ],
+  ];
+  for (const [id, terms] of scopes) {
+    const chapter = visibleHtml.match(
+      new RegExp(
+        `<article id="${id}"[\\s\\S]*?(?=<details class="career-context")`,
+      ),
+    )?.[0];
+    assert.ok(chapter, `Missing company chapter: ${id}`);
+    const text = chapter.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+    for (const term of terms)
+      assert.ok(
+        text.includes(term),
+        `${id}: missing visible engineering scope: ${term}`,
+      );
+    assert.doesNotMatch(
+      chapter,
+      /<details\b/,
+      `${id}: core work should not require opening product context`,
+    );
+    assert.match(chapter, /href="\/resume#/);
+  }
+  assert.doesNotMatch(
+    visibleText,
+    /humans stay in control|AI agents with a human in the loop\./,
+  );
+});
+
 test('international recruiting content is readable in English without JavaScript', () => {
   assert.match(html, /<html\b[^>]*lang="en"/);
   assert.doesNotMatch(

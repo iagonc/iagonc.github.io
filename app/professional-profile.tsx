@@ -3,65 +3,13 @@ import { experience } from './portfolio';
 import { githubUrl, linkedInUrl } from './site-config';
 import ExperienceExplorer from './experience-explorer';
 import { technicalToolkit } from './technical-toolkit';
-import ChapterBanner from './chapter-banner';
+import FieldInstrument from './field-instrument';
+import { caseStudies } from './case-studies';
 import ScrollExperience from './scroll-experience';
 
-const chapters = [
-  {
-    id: 'platform-engineering',
-    href: '/work/picpay-kubernetes',
-    number: '01',
-    company: 'PICPAY',
-    visual: 'picpay' as const,
-    date: '2021–2022',
-    title: 'Kubernetes, ready for the rush.',
-    discipline: 'Site Reliability Engineering · Cloud infrastructure',
-    metric: '300+',
-    unit: 'Kubernetes clusters',
-    problem:
-      'Payment infrastructure needs to keep up with changing demand. Queue-driven workloads need capacity when the work arrives.',
-    work: 'At PicPay, I operated infrastructure spanning 300+ Kubernetes clusters and implemented KEDA event-driven autoscaling for RabbitMQ. I supported production incident response and improved visibility with New Relic.',
-    takeaway:
-      'Connect workload signals, autoscaling and observability so teams can understand how their services behave under load.',
-    stack: ['Kubernetes', 'KEDA', 'RabbitMQ', 'AWS', 'New Relic'],
-  },
-  {
-    id: 'observability',
-    href: '/work/ifood-observability',
-    number: '02',
-    company: 'IFOOD',
-    visual: 'ifood' as const,
-    date: '2022–2025',
-    title: 'A clearer signal at scale.',
-    discipline: 'Observability Engineering · Platform Engineering',
-    metric: '50+',
-    unit: 'AWS accounts',
-    problem:
-      'When infrastructure spans many accounts and teams, consistent monitoring makes it easier to see what is happening and respond to incidents.',
-    work: 'At iFood, I standardized observability across 50+ AWS accounts and 3,000+ EC2 instances. My work included Datadog adoption, infrastructure tooling for thousands of developers and multi-region recovery design for critical internal services.',
-    takeaway:
-      'Bring monitoring, infrastructure as code and recovery planning together to make a large platform easier to operate.',
-    stack: ['Datadog', 'Terraform', 'AWS', 'Python', 'SLOs'],
-  },
-  {
-    id: 'ai-infrastructure',
-    href: '/work/kinter-ai-infrastructure',
-    number: '03',
-    company: 'ALLOY / KINTER',
-    visual: 'kinter' as const,
-    date: '2025–PRESENT',
-    title: 'AI agents with a human in the loop.',
-    discipline: 'AI Infrastructure · Production AI agents',
-    metric: 'HITL',
-    unit: 'human approval workflows',
-    problem:
-      'An agent that takes action needs more than a model response. It needs explicit approvals, recoverable execution and a record of what happened.',
-    work: 'At Alloy / Kinter, I lead cloud infrastructure and AI agent engineering. I architected an agent engine for general-ledger reconciliation using LangChain and LangGraph, with human-in-the-loop approvals, durable SSE replay and execution audit trails. My work also includes Amazon Bedrock model routing, prompt caching and Model Context Protocol (MCP) integrations.',
-    takeaway:
-      'Apply reliability engineering to agentic AI: make the workflow observable, keep humans in control and preserve execution history.',
-    stack: ['LangGraph', 'Amazon Bedrock', 'MCP', 'Go', 'Python', 'TypeScript'],
-  },
-];
+const chapters = ['picpay', 'ifood', 'kinter'].map((company) =>
+  caseStudies.find((study) => study.visual === company)!,
+);
 
 export default function ProfessionalProfile() {
   return (
@@ -192,57 +140,117 @@ export default function ProfessionalProfile() {
       >
         <div className="profile-section-heading">
           <div>
-            <p className="profile-eyebrow">THREE CHAPTERS. REAL WORK.</p>
-            <h2 id="work-title">Beyond the screen.</h2>
+            <p className="profile-eyebrow">
+              SELECTED EXPERIENCE / 2021–PRESENT
+            </p>
+            <h2 id="work-title">The work behind the systems.</h2>
           </div>
-          <p>The experience behind the playable missions.</p>
+          <p>
+            Three companies. The platforms I operated, the systems I built and
+            the teams I supported.
+          </p>
         </div>
-        {chapters.map((chapter) => (
-          <article id={chapter.id} className="work-chapter" key={chapter.id}>
-            <ChapterBanner company={chapter.visual} />
-            <div className="chapter-index">
-              <span>{chapter.number}</span>
-              <div>
-                {chapter.company}
-                <small>{chapter.date}</small>
+        <nav className="chapter-directory" aria-label="Company chapters">
+          {chapters.map((chapter, index) => (
+            <a href={`#${chapter.chapterId}`} key={chapter.jobId}>
+              <span>0{index + 1}</span>
+              <strong>{chapter.company}</strong>
+              <ArrowDown size={17} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+        {chapters.map((chapter, index) => (
+          <article
+            id={chapter.chapterId}
+            className={`career-chapter career-${chapter.visual}`}
+            key={chapter.jobId}
+            aria-labelledby={`${chapter.jobId}-chapter-title`}
+          >
+            <div className="career-registration" aria-hidden="true">
+              <span>FIELD NOTES / 0{index + 1}</span>
+              <span>{chapter.company.toUpperCase()}</span>
+              <span>ENGINEERING IN PRACTICE</span>
+            </div>
+            <header className="career-cover">
+              <div className="career-heading">
+                <p className="profile-eyebrow">{chapter.discipline}</p>
+                <div className="career-company">
+                  <h3 id={`${chapter.jobId}-chapter-title`}>
+                    {chapter.company}
+                  </h3>
+                  <span>{chapter.period}</span>
+                </div>
+                <p className="career-headline">{chapter.headline}</p>
+                <p className="career-byline">{chapter.role}</p>
+                <p className="career-lead">{chapter.lead}</p>
+                <a className="career-read" href={`#${chapter.jobId}-scope`}>
+                  EXPLORE MY WORK <ArrowDown size={17} aria-hidden="true" />
+                </a>
+              </div>
+              <FieldInstrument
+                company={chapter.visual}
+                sequence={chapter.flow}
+              />
+            </header>
+            <dl
+              className="impact-strip career-impact"
+              aria-label={`${chapter.company}: my engineering scope and outcomes`}
+            >
+              {chapter.metrics.map((metric) => (
+                <div key={metric.label}>
+                  <dt>{metric.label}</dt>
+                  <dd>{metric.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="career-scope" id={`${chapter.jobId}-scope`}>
+              <aside className="career-scope-index">
+                <p className="profile-eyebrow">MY SCOPE</p>
+                <p className="career-scope-title">
+                  Across the
+                  <br />
+                  whole system.
+                </p>
+                <p>Architecture, implementation and production operations.</p>
+                <a className="profile-text-link" href={`/work/${chapter.slug}`}>
+                  Read the full field notes{' '}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+                <a
+                  className="profile-text-link"
+                  href={`/resume#${chapter.jobId}`}
+                >
+                  Résumé & technologies{' '}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              </aside>
+              <div className="career-scope-grid">
+                {chapter.sections.map((section, sectionIndex) => (
+                  <section className="career-scope-item" key={section.title}>
+                    <p className="career-scope-label">
+                      <span>0{sectionIndex + 1}</span>
+                      {section.area}
+                    </p>
+                    <h4>{section.title}</h4>
+                    <p>{section.overview}</p>
+                  </section>
+                ))}
               </div>
             </div>
-            <div className="chapter-story">
-              <p className="chapter-discipline">{chapter.discipline}</p>
-              <h3>{chapter.title}</h3>
-              <p>{chapter.problem}</p>
-              <p>{chapter.work}</p>
-              <p className="chapter-takeaway">
-                <strong>The engineering idea</strong>
-                {chapter.takeaway}
-              </p>
-              <ul
-                className="chapter-stack"
-                aria-label={`${chapter.company} technologies`}
-              >
-                {chapter.stack.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <a
-                className="profile-text-link case-study-link"
-                href={chapter.href}
-              >
-                Read the{' '}
-                {chapter.company === 'ALLOY / KINTER'
-                  ? 'AI infrastructure'
-                  : chapter.company === 'IFOOD'
-                    ? 'observability'
-                    : 'Kubernetes'}{' '}
-                case study <ArrowUpRight size={16} aria-hidden="true" />
-              </a>
-            </div>
-            <div className="chapter-metric">
-              <strong>{chapter.metric}</strong>
-              <span>{chapter.unit}</span>
-              <span className="chapter-metric-caption">{chapter.company}</span>
-            </div>
-            <ExperienceExplorer company={chapter.visual} />
+            <p className="career-toolkit">
+              <span>IN THE TOOLKIT</span>
+              {chapter.focus}
+            </p>
+            <details className="career-context">
+              <summary>
+                <span>INSIDE {chapter.company.toUpperCase()}</span>
+                <span>Product screens & company context</span>
+                <span className="career-context-plus" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <ExperienceExplorer company={chapter.visual} />
+            </details>
           </article>
         ))}
         <p className="work-footnote">
@@ -410,6 +418,17 @@ export default function ProfessionalProfile() {
                 <h3>{job.title}</h3>
                 <p className="career-role">{job.role}</p>
                 <p>{job.detail}</p>
+                <details className="career-responsibilities">
+                  <summary>
+                    Full scope{' '}
+                    <span>{job.highlights.length} responsibilities</span>
+                  </summary>
+                  <ul>
+                    {job.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                </details>
                 <a className="profile-text-link" href={`/resume#${job.id}`}>
                   Read all responsibilities{' '}
                   <ArrowUpRight size={14} aria-hidden="true" />

@@ -6,6 +6,7 @@ import './experience-explorer.css';
 import './documents.css';
 import './studio.css';
 import './archive.css';
+import './career-chapters.css';
 import {
   linkedInUrl,
   publicSiteUrl,

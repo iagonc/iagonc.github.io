@@ -360,13 +360,18 @@ export function MissionNotes({
           <span>{mission.factLabel}</span>
         </div>
         <p>{mission.evidence}</p>
+        <ul className="mission-scope" aria-label="Areas of my work">
+          {mission.scope.map((area) => (
+            <li key={area}>{area}</li>
+          ))}
+        </ul>
         <span className="notes-employer">{mission.employer}</span>
         <p className="notes-tools">{mission.tools}</p>
         <a
           className="notes-career"
           href={`#${['platform-engineering', 'observability', 'ai-infrastructure'][state.mission]}`}
         >
-          Read the engineering story <ArrowUpRight size={13} />
+          Explore my full scope <ArrowUpRight size={13} />
         </a>
       </div>
       <p className="simulation-note">

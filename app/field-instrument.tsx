@@ -25,12 +25,12 @@ const instruments = {
   },
   kinter: {
     serial: 'AK—03',
-    name: 'Approval circuit',
-    labels: ['Prepare', 'Approve', 'Execute'],
+    name: 'Systems console',
+    labels: ['Platform', 'Telemetry', 'Agents'],
     notes: [
-      'Orchestrate the work and stream its progress.',
-      'A person reviews the proposed action.',
-      'Execute the approved action and keep its history.',
+      'AWS and EKS, reproducible environments and GitOps delivery.',
+      'Infrastructure signals, application monitoring and log retrieval.',
+      'Agent orchestration, model routing and tool integrations.',
     ],
   },
 };
@@ -159,59 +159,57 @@ export default function FieldInstrument({
               <>
                 <path
                   className="instrument-wire"
-                  d="M25 70H92V110H145M215 110H273V70H336M273 145V178H90V145"
+                  d="M33 43V173H68M292 43H326V173H292"
                 />
                 <path
                   className="instrument-trace"
                   pathLength="1"
-                  d="M25 70H92V110H145M215 110H273V70H336"
+                  d="M33 173V43H68M292 43H326V173H292"
                 />
-                <rect
-                  x="25"
-                  y="46"
-                  width="64"
-                  height="48"
-                  fill="var(--instrument-paper)"
-                  stroke="currentColor"
-                />
-                <text x="57" y="75" textAnchor="middle">
-                  AGENT
-                </text>
-                <path
-                  d="M180 71L219 110L180 149L141 110Z"
-                  fill={step > 0 ? 'currentColor' : 'var(--instrument-paper)'}
-                  stroke="currentColor"
-                />
-                <text
-                  x="180"
-                  y="114"
-                  textAnchor="middle"
-                  fill={step > 0 ? 'var(--instrument-paper)' : 'currentColor'}
-                >
-                  HUMAN
-                </text>
-                <rect
-                  x="272"
-                  y="46"
-                  width="64"
-                  height="48"
-                  fill={step === 2 ? 'currentColor' : 'var(--instrument-paper)'}
-                  stroke="currentColor"
-                />
-                <text
-                  x="304"
-                  y="75"
-                  textAnchor="middle"
-                  fill={step === 2 ? 'var(--instrument-paper)' : 'currentColor'}
-                >
-                  ACTION
-                </text>
-                <text x="180" y="201" textAnchor="middle">
+                {[
+                  'AWS / EKS / GITOPS',
+                  'METRICS / LOGS / TRACES',
+                  'AGENTS / MODELS / MCP',
+                ].map((label, index) => (
+                  <g key={label}>
+                    <rect
+                      x="68"
+                      y={21 + index * 65}
+                      width="224"
+                      height="44"
+                      rx="2"
+                      fill={
+                        step === index
+                          ? 'currentColor'
+                          : 'var(--instrument-paper)'
+                      }
+                      stroke="currentColor"
+                    />
+                    <circle
+                      cx="33"
+                      cy={43 + index * 65}
+                      r={step === index ? 5 : 3}
+                    />
+                    <text
+                      x="180"
+                      y={47 + index * 65}
+                      textAnchor="middle"
+                      fill={
+                        step === index
+                          ? 'var(--instrument-paper)'
+                          : 'currentColor'
+                      }
+                    >
+                      {label}
+                    </text>
+                  </g>
+                ))}
+                <text x="180" y="214" textAnchor="middle">
                   {
                     [
-                      'PREPARE / REVIEW / EXECUTE',
-                      'HUMAN APPROVAL',
-                      'EXECUTION / AUDIT TRAIL',
+                      'PROVISION / DEPLOY / OPERATE',
+                      'COLLECT / QUERY / INVESTIGATE',
+                      'ORCHESTRATE / ROUTE / INTEGRATE',
                     ][step]
                   }
                 </text>

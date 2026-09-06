@@ -15,7 +15,7 @@ export const experience = [
     summary:
       'Leading cloud infrastructure and production AI agent engineering.',
     detail:
-      'Lead AWS infrastructure, Kubernetes and observability. Architect AI agent workflows with human approvals, durable streaming and audit trails. Build with Go, Python, TypeScript, LangGraph and AWS Bedrock.',
+      'Lead cloud infrastructure and production AI engineering: AWS and EKS operations, GitOps delivery, observability and large-scale logging. Architected and shipped the reconciliation agent engine, with model routing, durable streaming and MCP integrations.',
     highlights: [
       'Manage and scale AWS infrastructure and EKS clusters supporting clients including Amazon, Best Buy and UPS. Participate in a 24/7 on-call rotation for infrastructure including EKS, SQS, Kafka and Redis.',
       'Architected and shipped an AI agent engine for general-ledger reconciliation SaaS. Built multi-agent orchestration with LangChain and LangGraph, human-in-the-loop approval workflows, SSE streaming with durable replay and an expandable execution audit trail, using Go, Python, TypeScript, REST and gRPC.',
