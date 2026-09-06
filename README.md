@@ -29,6 +29,18 @@ Open the URL printed by the development server. Use `http://localhost:3001/` wit
 
 All controls also work with mouse and touch. The classic résumé dialog supports direct reading and a text download. Motion respects `prefers-reduced-motion`.
 
+## Interactive studio
+
+The home page progressively enhances the playable console with a matte Three.js shell, warm daylight and a synchronized CSS3D face. The paper, ink and mechanical controls share the retro editorial palette of the career sections. Play keeps the original DOM controls and game state. Inspect supports dragging (horizontal on touch) and keyboard-accessible rotation buttons. Inside opens four assemblies: the hollow front shell, LCD carrier with a flex ribbon, populated circuit board, and rear tub with batteries. A separation slider assembles or explodes the model; component selectors isolate the display, logic board or power shell for rotation. Moulded edges, plated contacts, speaker wiring, screw bosses and a stationary turntable give the object physical depth. These are illustrative components of an original handheld concept. Original, Burgundy and Graphite change the finish; reset restores the viewing angle. The console settles after interaction instead of continuously floating. Pause makes view changes immediate and stops ambient chapter-art motion.
+
+The case studies extend the paper theme with interactive field instruments: a capacity monitor for PicPay, a signal finder for iFood and an approval circuit for Kinter. Three physical keys step through each illustrative sequence. The résumé, consulting page and hiring brief use layered archive covers. `document-motion.tsx` adds one-time section entrances, scroll-linked depth, a reading indicator and active chapter navigation. The résumé also has a numbered career rail. These enhancements preserve server-rendered content, respect reduced motion and remove decoration in the résumé's print layout. Shared styles live in `archive.css`; the instruments add no WebGL or animation dependency to the document routes.
+
+The renderer is imported only by the home-page console. It uses a contact shadow on the turntable, caps pixel density, renders only while settling or responding to input, stops drawing when off screen or in a hidden tab, respects reduced motion, and disposes GPU resources and observers on unmount. If WebGL cannot start or its context is lost, the original playable CSS console remains available. No model downloads or external rendering services are required.
+
+Career chapters have geometric animated banners linking directly to each company explorer, scroll reveals, pointer-responsive artwork and gallery previews, and animated Product / Scale / My contribution panels. Scrolling stays native; career content and links remain present without JavaScript. The artwork illustrates each discipline and does not depict actual infrastructure.
+
+The renderer lives in `app/console-scene.ts`, the original procedural hardware in `app/console-hardware.ts`, its React lifecycle and controls in `app/console-stage.tsx`, career artwork in `app/chapter-banner.tsx`, and progressive scroll effects in `app/scroll-experience.tsx`. `app/studio.css` scopes the studio and career styling.
+
 ## Playable work
 
 The first screen is a cartridge selector. Insert one with A / Start or use the cartridge buttons on desktop. During a mission, the D-pad chooses an action and A performs it. B ejects the cartridge; from the selector, B opens the original résumé menu.

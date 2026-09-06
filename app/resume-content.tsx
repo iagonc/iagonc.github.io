@@ -11,9 +11,12 @@ export default function ResumeContent() {
     <div className="resume-content">
       <h2>Profile</h2>
       <p>{professionalSummary}</p>
-      <h2>Work experience</h2>
-      {experience.map((job) => (
+      <h2 id="work-history">Work experience</h2>
+      {experience.map((job, index) => (
         <section className="resume-job" id={job.id} key={job.id}>
+          <span className="resume-file-number" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
           <div>
             <h3>{job.title}</h3>
             <span>{job.period}</span>
@@ -30,7 +33,7 @@ export default function ResumeContent() {
           </p>
         </section>
       ))}
-      <h2>Technical toolkit</h2>
+      <h2 id="resume-toolkit">Technical toolkit</h2>
       {technicalToolkit.map((group) => (
         <p key={group.title}>
           <strong>{group.title}: </strong>

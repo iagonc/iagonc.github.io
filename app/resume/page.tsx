@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import ResumeContent from '../resume-content';
 import PrintResume from '../print-resume';
+import DocumentMotion from '../document-motion';
+import ArchiveCover from '../archive-cover';
+import { experience } from '../portfolio';
 import { linkedInUrl, publicSiteUrl } from '../site-config';
 
 const title =
@@ -31,48 +34,60 @@ export const metadata: Metadata = {
 export default function ResumePage() {
   return (
     <main className="document-page resume-page">
+      <DocumentMotion />
       <nav className="document-nav" aria-label="Resume navigation">
         <a href="/">← Iago pocket / Portfolio</a>
         <a href={linkedInUrl} rel="me noopener" target="_blank">
           LinkedIn ↗
         </a>
       </nav>
-      <header className="document-header">
-        <p className="profile-eyebrow">THE COMPLETE PLAYER FILE / RÉSUMÉ</p>
-        <h1>Iago Neves Caldeira</h1>
-        <p className="document-subtitle">
-          Senior Site Reliability Engineer · Observability · Platform & AI
-          Engineering
-        </p>
-        <p>Belo Horizonte, Brazil · Latin America (LATAM) · UTC−3</p>
-        <p className="print-contact">
-          Portfolio: iagonc.github.io · LinkedIn:
-          linkedin.com/in/iago-n-caldeira
-        </p>
-        <div className="document-actions">
-          <a
-            className="linkedin-cta"
-            href="/resume.txt"
-            download="Iago-Caldeira-Resume.txt"
-          >
-            Download full résumé ↓
-          </a>
-          <PrintResume />
-          <a className="profile-text-link" href="/consulting">
-            Consulting & project contracts ↗
-          </a>
+      <header className="document-header document-cover-header">
+        <div className="document-heading">
+          <p className="profile-eyebrow">THE COMPLETE PLAYER FILE / RÉSUMÉ</p>
+          <h1>Iago Neves Caldeira</h1>
+          <p className="document-subtitle">
+            Senior Site Reliability Engineer · Observability · Platform & AI
+            Engineering
+          </p>
+          <p>Belo Horizonte, Brazil · Latin America (LATAM) · UTC−3</p>
+          <p className="print-contact">
+            Portfolio: iagonc.github.io · LinkedIn:
+            linkedin.com/in/iago-n-caldeira
+          </p>
+          <div className="document-actions">
+            <a
+              className="linkedin-cta"
+              href="/resume.txt"
+              download="Iago-Caldeira-Resume.txt"
+            >
+              Download full résumé ↓
+            </a>
+            <PrintResume />
+            <a className="profile-text-link" href="/consulting">
+              Consulting & project contracts ↗
+            </a>
+          </div>
         </div>
+        <ArchiveCover variant="resume" />
       </header>
-      <nav className="resume-jump-links" aria-label="Work history">
-        <a href="#alloy-kinter">Alloy / Kinter</a>
-        <a href="#ifood">iFood</a>
-        <a href="#accenture">Accenture</a>
-        <a href="#picpay">PicPay</a>
-        <a href="#prodap">Prodap</a>
-        <a href="#independent">Independent</a>
-        <a href="#city-hall">City Hall</a>
-      </nav>
-      <ResumeContent />
+      <div className="resume-layout">
+        <aside className="resume-index">
+          <p className="profile-eyebrow">THE CAREER INDEX</p>
+          <nav className="resume-jump-links" aria-label="Work history">
+            {experience.map((job, index) => (
+              <a href={`#${job.id}`} key={job.id}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                {job.title}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </nav>
+          <a className="resume-index-end" href="#resume-toolkit">
+            Technical toolkit ↓
+          </a>
+        </aside>
+        <ResumeContent />
+      </div>
       <footer className="document-footer">
         <a href="/infrastructure-engineer">
           Match my experience to your role →

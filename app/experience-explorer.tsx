@@ -364,6 +364,7 @@ export default function ExperienceExplorer({
 
   return (
     <section
+      id={`${company}-explorer`}
       className={`experience-explorer explorer-${company}`}
       aria-label={`Explore ${story.name}`}
     >
@@ -531,7 +532,10 @@ export default function ExperienceExplorer({
                 key={metric.dots}
               >
                 {Array.from({ length: metric.dots }, (_, index) => (
-                  <span key={index} />
+                  <span
+                    key={index}
+                    style={{ animationDelay: `${index * 12}ms` }}
+                  />
                 ))}
               </div>
               <figcaption>{metric.legend}</figcaption>

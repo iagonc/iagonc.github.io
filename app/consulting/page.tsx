@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import DocumentMotion from '../document-motion';
+import ArchiveCover from '../archive-cover';
 import { linkedInUrl, publicSiteUrl } from '../site-config';
 
 const title = 'SRE, DevOps & Cloud Consulting | Iago Caldeira · Brazil / LATAM';
@@ -104,6 +106,7 @@ export default function ConsultingPage() {
   };
   return (
     <main className="document-page consulting-page">
+      <DocumentMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -114,37 +117,40 @@ export default function ConsultingPage() {
         <a href="/">← Iago pocket / Portfolio</a>
         <a href="/resume">Full résumé ↗</a>
       </nav>
-      <header className="document-header">
-        <p className="profile-eyebrow">
-          INDEPENDENT CONSULTING / IAGO CALDEIRA
-        </p>
-        <h1>SRE, cloud & AI infrastructure consulting.</h1>
-        <p className="document-subtitle">
-          A defined project. Hands-on engineering. A team ready to own it.
-        </p>
-        <p className="case-lead">
-          I help engineering teams improve reliability, build cloud platforms
-          and bring AI workflows into production. I take on project-based
-          consulting and fixed-term contracts, from a focused assessment to
-          implementation and handover.
-        </p>
-        <p>
-          Belo Horizonte, Brazil · LATAM · UTC−3 · Remote collaboration in
-          English and Portuguese
-        </p>
-        <div className="document-actions">
-          <a
-            className="linkedin-cta"
-            href={linkedInUrl}
-            rel="me noopener"
-            target="_blank"
-          >
-            Discuss your project on LinkedIn ↗
-          </a>
-          <a className="profile-text-link" href="#services">
-            Find the right scope ↓
-          </a>
+      <header className="document-header document-cover-header">
+        <div className="document-heading">
+          <p className="profile-eyebrow">
+            INDEPENDENT CONSULTING / IAGO CALDEIRA
+          </p>
+          <h1>SRE, cloud & AI infrastructure consulting.</h1>
+          <p className="document-subtitle">
+            A defined project. Hands-on engineering. A team ready to own it.
+          </p>
+          <p className="case-lead">
+            I help engineering teams improve reliability, build cloud platforms
+            and bring AI workflows into production. I take on project-based
+            consulting and fixed-term contracts, from a focused assessment to
+            implementation and handover.
+          </p>
+          <p>
+            Belo Horizonte, Brazil · LATAM · UTC−3 · Remote collaboration in
+            English and Portuguese
+          </p>
+          <div className="document-actions">
+            <a
+              className="linkedin-cta"
+              href={linkedInUrl}
+              rel="me noopener"
+              target="_blank"
+            >
+              Discuss your project on LinkedIn ↗
+            </a>
+            <a className="profile-text-link" href="#services">
+              Find the right scope ↓
+            </a>
+          </div>
         </div>
+        <ArchiveCover variant="consulting" />
       </header>
       <div className="consulting-modes" aria-label="Engagement formats">
         <span>Architecture & reliability assessments</span>

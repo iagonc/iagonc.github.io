@@ -3,6 +3,8 @@ import { experience } from './portfolio';
 import { githubUrl, linkedInUrl } from './site-config';
 import ExperienceExplorer from './experience-explorer';
 import { technicalToolkit } from './technical-toolkit';
+import ChapterBanner from './chapter-banner';
+import ScrollExperience from './scroll-experience';
 
 const chapters = [
   {
@@ -64,6 +66,7 @@ const chapters = [
 export default function ProfessionalProfile() {
   return (
     <main id="profile" className="professional-profile" tabIndex={-1}>
+      <ScrollExperience />
       <div className="profile-section-label">
         <span>PLAYER FILE / 01</span>
         <span>THE PERSON BEHIND THE PIXELS</span>
@@ -196,6 +199,7 @@ export default function ProfessionalProfile() {
         </div>
         {chapters.map((chapter) => (
           <article id={chapter.id} className="work-chapter" key={chapter.id}>
+            <ChapterBanner company={chapter.visual} />
             <div className="chapter-index">
               <span>{chapter.number}</span>
               <div>

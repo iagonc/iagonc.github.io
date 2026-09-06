@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import DocumentMotion from '../document-motion';
+import ArchiveCover from '../archive-cover';
 import {
   linkedInUrl,
   publicSiteUrl,
@@ -97,6 +99,7 @@ export const metadata: Metadata = {
 export default function EngineeringProfilePage() {
   return (
     <main className="document-page consulting-page hiring-page">
+      <DocumentMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -112,33 +115,36 @@ export default function EngineeringProfilePage() {
         <a href="/">← Iago pocket / Portfolio</a>
         <a href="/resume">Full résumé ↗</a>
       </nav>
-      <header className="document-header">
-        <p className="profile-eyebrow">
-          FOR RECRUITERS, FOUNDERS & ENGINEERING LEADERS
-        </p>
-        <h1>Infrastructure Engineer & Senior SRE in LATAM.</h1>
-        <p className="document-subtitle">
-          Iago Neves Caldeira · Belo Horizonte, Brazil
-        </p>
-        <p className="case-lead">
-          I build and operate cloud infrastructure, developer platforms and
-          observability systems. Since 2018, my work has covered financial
-          services, food delivery and enterprise software. I currently lead
-          cloud infrastructure and AI agent engineering at Alloy / Kinter.
-        </p>
-        <div className="document-actions">
-          <a
-            className="linkedin-cta"
-            href={linkedInUrl}
-            rel="me noopener"
-            target="_blank"
-          >
-            Discuss an engineering role ↗
-          </a>
-          <a className="profile-text-link" href="/resume">
-            Read my full work history →
-          </a>
+      <header className="document-header document-cover-header">
+        <div className="document-heading">
+          <p className="profile-eyebrow">
+            FOR RECRUITERS, FOUNDERS & ENGINEERING LEADERS
+          </p>
+          <h1>Infrastructure Engineer & Senior SRE in LATAM.</h1>
+          <p className="document-subtitle">
+            Iago Neves Caldeira · Belo Horizonte, Brazil
+          </p>
+          <p className="case-lead">
+            I build and operate cloud infrastructure, developer platforms and
+            observability systems. Since 2018, my work has covered financial
+            services, food delivery and enterprise software. I currently lead
+            cloud infrastructure and AI agent engineering at Alloy / Kinter.
+          </p>
+          <div className="document-actions">
+            <a
+              className="linkedin-cta"
+              href={linkedInUrl}
+              rel="me noopener"
+              target="_blank"
+            >
+              Discuss an engineering role ↗
+            </a>
+            <a className="profile-text-link" href="/resume">
+              Read my full work history →
+            </a>
+          </div>
         </div>
+        <ArchiveCover variant="hiring" />
       </header>
       <dl className="candidate-facts">
         <div>

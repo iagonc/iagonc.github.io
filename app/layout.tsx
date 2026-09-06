@@ -4,6 +4,8 @@ import './arcade.css';
 import './profile.css';
 import './experience-explorer.css';
 import './documents.css';
+import './studio.css';
+import './archive.css';
 import {
   linkedInUrl,
   publicSiteUrl,

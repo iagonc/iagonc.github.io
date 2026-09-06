@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { caseStudies } from '../../case-studies';
 import ExperienceExplorer from '../../experience-explorer';
+import DocumentMotion from '../../document-motion';
+import FieldInstrument from '../../field-instrument';
 import { linkedInUrl, publicSiteUrl } from '../../site-config';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -58,6 +60,7 @@ export default async function CaseStudyPage({ params }: Props) {
   };
   return (
     <main className={`document-page case-page case-${study.visual}`}>
+      <DocumentMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -68,17 +71,23 @@ export default async function CaseStudyPage({ params }: Props) {
         <a href="/#selected-work">← Iago pocket / Selected work</a>
         <a href="/resume">Full résumé ↗</a>
       </nav>
-      <header className="document-header">
-        <p className="profile-eyebrow">{study.discipline}</p>
-        <p className="case-company">
-          {study.company} <span>{study.period}</span>
-        </p>
-        <h1>{study.title}</h1>
-        <p className="document-subtitle">{study.headline}</p>
-        <p className="case-byline">
-          By <a href="/#profile">Iago Neves Caldeira</a> · {study.role}
-        </p>
-        <p className="case-lead">{study.lead}</p>
+      <header className="document-header document-cover-header">
+        <div className="document-heading">
+          <p className="profile-eyebrow">{study.discipline}</p>
+          <p className="case-company">
+            {study.company} <span>{study.period}</span>
+          </p>
+          <h1>{study.title}</h1>
+          <p className="document-subtitle">{study.headline}</p>
+          <p className="case-byline">
+            By <a href="/#profile">Iago Neves Caldeira</a> · {study.role}
+          </p>
+          <p className="case-lead">{study.lead}</p>
+          <a className="document-read-link" href="#section-1">
+            READ THE FIELD NOTES <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+        <FieldInstrument company={study.visual} sequence={study.flow} />
       </header>
       <dl className="impact-strip">
         {study.metrics.map((metric) => (
@@ -115,8 +124,10 @@ export default async function CaseStudyPage({ params }: Props) {
           <figure className="case-flow">
             <figcaption>Engineering overview · simplified sequence</figcaption>
             <ol>
-              {study.flow.map((step) => (
-                <li key={step}>{step}</li>
+              {study.flow.map((step, index) => (
+                <li key={step} style={{ animationDelay: `${index * 160}ms` }}>
+                  {step}
+                </li>
               ))}
             </ol>
           </figure>
