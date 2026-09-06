@@ -11,7 +11,6 @@ import {
 import { experience, projects, toolkit, profile } from './portfolio';
 import { linkedInUrl } from './site-config';
 import ResumeContent from './resume-content';
-import ConsoleStage from './console-stage';
 import { ArcadeScreen, CartridgeShelf, MissionNotes } from './arcade';
 import {
   arcadeReducer,
@@ -245,10 +244,6 @@ export default function ConsolePortfolio() {
   useEffect(() => {
     function handleKey(event: KeyboardEvent) {
       if (resume || event.metaKey || event.ctrlKey || event.altKey) return;
-      const sceneMode = document
-        .querySelector('.scene-stage')
-        ?.getAttribute('data-mode');
-      if (sceneMode && sceneMode !== 'play') return;
       const consoleRect = document
         .getElementById('console')
         ?.getBoundingClientRect();
@@ -261,7 +256,7 @@ export default function ConsolePortfolio() {
       if (
         event.target instanceof HTMLElement &&
         event.target.closest(
-          'input, textarea, select, [role="switch"], [contenteditable="true"], .professional-profile, [data-stage-controls]',
+          'input, textarea, select, [role="switch"], [contenteditable="true"], .professional-profile',
         )
       )
         return;
@@ -382,11 +377,7 @@ export default function ConsolePortfolio() {
           />
         </aside>
         <div className="console-column">
-          <ConsoleStage
-            pressed={pressed}
-            power={power}
-            feedback={`${pressed}-${arcade.mission}-${arcade.phase}`}
-          >
+          <div className="console-stage">
             <section
               id="console"
               data-nosnippet=""
@@ -657,7 +648,7 @@ export default function ConsolePortfolio() {
                 PHONES
               </div>
             </section>
-          </ConsoleStage>
+          </div>
           <p className="under-console">
             {!power
               ? 'FLIP THE SWITCH. BEGIN AGAIN.'
